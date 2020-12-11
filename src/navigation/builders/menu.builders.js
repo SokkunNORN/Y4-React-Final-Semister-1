@@ -2,23 +2,23 @@
 const MENU_BUILDER = [
     {
         name: 'Home',
-        part: '/'
+        path: '/'
     },
     {
         name: 'Watch',
-        part: '/watch'
+        path: '/watch'
     },
     {
         name: 'Store',
-        part: '/store'
+        path: '/store'
     },
     {
         name: 'Group',
-        part: '/group'
+        path: '/group'
     },
     {
         name: 'Game',
-        part: '/game'
+        path: '/game'
     }
 ]
 

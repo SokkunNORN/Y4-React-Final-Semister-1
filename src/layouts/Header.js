@@ -17,7 +17,7 @@ function Header () {
                                 MENU_BUILDER.map((value, index) => {
                                     return (
                                         <li className="nav-item" key={ index }>
-                                            <a className="nav-link" href={value.part}>{ value.name }</a>
+                                            <a className="nav-link" href={ value.path }>{ value.name }</a>
                                         </li>
                                     )
                                 })
