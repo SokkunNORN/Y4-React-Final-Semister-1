@@ -1,5 +1,7 @@
 
-const MENU_BUILDER = [
+export const APP_NAME = 'Y4 - Web Develop with Framework'
+
+export const MENU_BUILDER = [
     {
         name: 'Home',
         path: '/'
@@ -21,5 +23,3 @@ const MENU_BUILDER = [
         path: '/game'
     }
 ]
-
-export default MENU_BUILDER
