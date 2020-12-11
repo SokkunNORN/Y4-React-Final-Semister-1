@@ -10,7 +10,12 @@ function Header () {
             <nav className="navbar navbar-expand-lg navbar-light bg-light">
                 <div className="container">
                     <a className="navbar-brand" href="#">{ APP_NAME }</a>
-                    <button className="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                    <button className="navbar-toggler"
+                        type="button" data-toggle="collapse" 
+                        data-target="#navbarNav" 
+                        aria-controls="navbarNav" 
+                        aria-expanded="false" 
+                        aria-label="Toggle navigation">
                         <span className="navbar-toggler-icon"></span>
                     </button>
                     <div className="collapse navbar-collapse" id="navbarNav">
@@ -19,7 +24,10 @@ function Header () {
                                 MENU_BUILDER.map((value, index) => {
                                     return (
                                         <li className="nav-item" key={ index }>
-                                            <a className={ currentURL === value.path ? "nav-link active" : "nav-link"} href={ value.path }>{ value.name }</a>
+                                            <a className={ currentURL === value.path ? "nav-link active" : "nav-link"}
+                                                href={ value.path }>
+                                                { value.name }
+                                            </a>
                                         </li>
                                     )
                                 })
