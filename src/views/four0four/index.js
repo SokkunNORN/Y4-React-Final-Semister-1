@@ -1,4 +1,5 @@
 import './index.css'
+import { MENU_BUILDER } from '../../navigation/builders/menu.builders';
 
 function Four0Four () {
     return (
@@ -14,7 +15,7 @@ function Four0Four () {
                                 <br/>
                                 The page you were looking for doesn't exist anymore.
                             </div>
-                            <a href="/" class="btn btn-outline-danger">Back to Home</a>
+                            <a href={ MENU_BUILDER[0].path } class="btn btn-outline-danger">Back to Home</a>
                         </div>
                     </div>
                 </div>

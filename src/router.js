@@ -1,31 +1,64 @@
-import Home from './views/Home/Index'
-import Watch from './views/Watch/Index'
-import Store from './views/Store/Index'
-import Group from './views/Group/Index'
-import Game from './views/Game/Index'
 
-const routes = [
-    {
-      path: "/",
-      exact: true,
-      component: Home
-    },
-    {
-      path: "/watch",
-      component: Watch
-    },
-    {
-      path: "/store",
-      component: Store
-    },
-    {
-      path: "/group",
-      component: Group
-    },
-    {
-      path: "/game",
-      component: Game
-    }
+import { Route } from "react-router-dom";
+
+import { MENU_BUILDER } from './navigation/builders/menu.builders';
+
+import Login from './views/auth'
+import Dashboard from './layouts/Dashboard'
+import Home from './views/home'
+import Watch from './views/watch'
+import Store from './views/store'
+import Group from './views/group'
+import Game from './views/game'
+import Four0Four from './views/four0four'
+
+export const routes = [
+  {
+    path: "/",
+    exact: true,
+    component: Dashboard,
+    routes: [
+      {
+        path: MENU_BUILDER[0].path,
+        component: Home
+      },
+      {
+        path: MENU_BUILDER[1].path,
+        component: Watch
+      },
+      {
+        path: MENU_BUILDER[2].path,
+        component: Store
+      },
+      {
+        path: MENU_BUILDER[3].path,
+        component: Group
+      },
+      {
+        path: MENU_BUILDER[4].path,
+        component: Game
+      }
+    ]
+  },
+  {
+    path: "/login",
+    exact: true,
+    component: Login
+  },
+  {
+    path: "*",
+    exact: true,
+    component: Four0Four
+  }
 ];
 
-export default routes
+export function RouteWithSubRoutes (route) {
+  return (
+    <Route
+      path={ route.path }
+      render={props => (
+        <route.component {...props} routes={ route.routes } />
+      )}
+    />
+  );
+}

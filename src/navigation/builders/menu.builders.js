@@ -1,5 +1,5 @@
 
-export const APP_NAME = 'Y4 - Web Develop with Framework'
+export const APP_NAME = 'Y4 - Web Development with Framework'
 
 export const MENU_BUILDER = [
     {

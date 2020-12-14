@@ -1,3 +1,4 @@
+/* eslint-disable jsx-a11y/role-supports-aria-props */
 /* eslint-disable jsx-a11y/anchor-is-valid */
 
 import { APP_NAME, MENU_BUILDER } from '../navigation/builders/menu.builders';
@@ -32,6 +33,14 @@ function Header () {
                                     )
                                 })
                             }
+                            <li class="nav-item dropdown">
+                                <a class="nav-link dropdown-toggle" href="#" id="dropdownAccount" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                    <i class="fa fa-user-circle"></i>
+                                </a>
+                                <div class="dropdown-menu" aria-labelledby="dropdownAccount">
+                                    <a class="dropdown-item" href="/login"><i class="fa fa-sign-out"></i> Log out</a>
+                                </div>
+                            </li>
                         </ul>
                     </div>
                 </div>
