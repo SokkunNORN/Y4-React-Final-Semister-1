@@ -33,12 +33,12 @@ function Header () {
                                     )
                                 })
                             }
-                            <li class="nav-item dropdown">
-                                <a class="nav-link dropdown-toggle" href="#" id="dropdownAccount" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                    <i class="fa fa-user-circle"></i>
+                            <li className="nav-item dropdown">
+                                <a className="nav-link dropdown-toggle" href="#" id="dropdownAccount" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                    <i className="fa fa-user-circle"></i>
                                 </a>
-                                <div class="dropdown-menu" aria-labelledby="dropdownAccount">
-                                    <a class="dropdown-item" href="/login"><i class="fa fa-sign-out"></i> Log out</a>
+                                <div className="dropdown-menu" aria-labelledby="dropdownAccount">
+                                    <a className="dropdown-item" href="/login"><i className="fa fa-sign-out"></i> Log out</a>
                                 </div>
                             </li>
                         </ul>

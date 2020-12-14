@@ -1,7 +1,17 @@
+import './index.css'
 
+import { useHistory } from "react-router-dom";
 import { MENU_BUILDER } from '../../navigation/builders/menu.builders';
 
+
 function Login () {
+    const HISTORY = useHistory();
+    var isShowPassword = false
+
+    function submit () {
+        HISTORY.push(MENU_BUILDER[0].path);
+    }
+
     return (
         <>
             <div className="page-wrap d-flex flex-row align-items-center">
@@ -11,13 +21,15 @@ function Login () {
                             <div className="card p-3">
                                 <div className="card-body">
                                     <h2 className="mb-5 mt-2">Login</h2>
-                                    <form action={ MENU_BUILDER[0].path }>
+                                    <form>
                                         <div className="row">
                                             <div className="col-12">
                                                 <div className="input-group">
                                                     <input className="form-control py-2 border-right-0 border" type="text" placeholder="Username" />
                                                     <span className="input-group-append">
-                                                        <div className="input-group-text bg-transparent"><i className="fa fa-user"></i></div>
+                                                        <div className="input-group-text bg-transparent">
+                                                            <i className="fa fa-user"></i>
+                                                        </div>
                                                     </span>
                                                 </div>
                                             </div>
@@ -27,10 +39,10 @@ function Login () {
 
                                         <div className="row">
                                             <div className="input-group col-12">
-                                                <input className="form-control py-2 border-right-0 border" type="password" placeholder="Password" />
+                                                <input className="form-control py-2 border-right-0 border" type={ isShowPassword ? "text" : "password" } placeholder="Password" />
                                                 <span className="input-group-append">
                                                     <button className="btn border-left-0 border" type="button">
-                                                        <i className="fa fa-eye"></i>
+                                                        <i className={ isShowPassword ? "fa fa-eye" : "fa fa-eye-slash"}></i>
                                                     </button>
                                                 </span>
                                             </div>
@@ -40,7 +52,9 @@ function Login () {
                                         <br />
                                         
                                         <div className="form-group">
-                                            <button type="submit" className="btn btn-block btn-danger"><i className="fa fa-sign-in"></i> Login</button>
+                                            <button type="button" onClick={ submit } className="btn btn-block btn-danger">
+                                                <i className="fa fa-sign-in"></i> Login
+                                            </button>
                                         </div>
                                     </form>
                                 </div>
