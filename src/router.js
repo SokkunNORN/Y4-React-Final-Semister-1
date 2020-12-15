@@ -14,12 +14,12 @@ import Four0Four from './views/four0four'
 
 export const routes = [
   {
-    path: "/",
-    exact: true,
+    path: "/dashboard",
     component: Dashboard,
     routes: [
       {
         path: MENU_BUILDER[0].path,
+        exact: true,
         component: Home
       },
       {

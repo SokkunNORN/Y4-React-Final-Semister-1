@@ -4,22 +4,22 @@ export const APP_NAME = 'Y4 - Web Development with Framework'
 export const MENU_BUILDER = [
     {
         name: 'Home',
-        path: '/'
+        path: '/dashboard'
     },
     {
         name: 'Watch',
-        path: '/watch'
+        path: '/dashboard/watch'
     },
     {
         name: 'Store',
-        path: '/store'
+        path: '/dashboard/store'
     },
     {
         name: 'Group',
-        path: '/group'
+        path: '/dashboard/group'
     },
     {
         name: 'Game',
-        path: '/game'
+        path: '/dashboard/game'
     }
 ]
