@@ -1,0 +1,34 @@
+
+.sidebar {
+    width: 60px;
+    position: fixed;
+    height: 100vh;
+    background: #FFFFFF;
+    padding: 20px 0
+}
+
+.text-muted {
+    color: #adb5bd !important
+}
+
+ul {
+    padding-bottom: 20px
+}
+
+.sidebar ul li {
+    padding: 15px
+}
+
+.sidebar ul li a {
+    color: #fff;
+    display: block
+}
+
+.sidebar ul li a .fa {
+    width: 30px;
+    color: #898f94 !important
+}
+
+.sidebar ul li a:hover {
+    text-decoration: none
+}
