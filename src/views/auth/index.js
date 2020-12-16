@@ -1,16 +1,12 @@
 import './index.css'
 
-import { useHistory } from "react-router-dom";
 import { MENU_BUILDER } from '../../navigation/builders/menu.builders';
 
-
-function Login () {
-    const HISTORY = useHistory();
+function Login () {;
     var isShowPassword = false
 
     function submit () {
-        HISTORY.push(MENU_BUILDER[0].path);
-        window.location.reload();
+        window.location.href = MENU_BUILDER[0].path
     }
 
     return (
