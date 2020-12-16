@@ -2,4 +2,9 @@
 .contain {
     margin-left: 60px;
     width: 100% !important;
+    height: 100vh;
+}
+
+.container-fluid {
+    height: 100vh !important;
 }
