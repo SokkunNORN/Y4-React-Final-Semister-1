@@ -10,6 +10,7 @@ function Login () {
 
     function submit () {
         HISTORY.push(MENU_BUILDER[0].path);
+        window.location.reload();
     }
 
     return (
