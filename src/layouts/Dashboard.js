@@ -13,13 +13,11 @@ function Dashboard ({ routes }) {
 
                 <div className="contain">
                     <div className="container-fluid mt-4">
-                        <div className="container p-4">
-                            <Switch>
-                                { routes.map((route, i) => (
-                                    <RouteWithSubRoutes key={i} { ...route } />
-                                )) }    
-                            </Switch>
-                        </div>
+                        <Switch>
+                            { routes.map((route, i) => (
+                                <RouteWithSubRoutes key={i} { ...route } />
+                            )) }    
+                        </Switch>
                     </div>
                 </div>
             </div>     
