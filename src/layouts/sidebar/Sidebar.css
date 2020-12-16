@@ -15,7 +15,7 @@ ul {
     padding-bottom: 20px
 }
 
-.sidebar ul li {
+.sidebar ul li a {
     padding: 15px
 }
 
@@ -31,4 +31,9 @@ ul {
 
 .sidebar ul li a:hover {
     text-decoration: none
+}
+
+.sidebar ul li a:hover i.fa,
+.sidebar ul li a.active i.fa {
+    color: #49CC68 !important;
 }

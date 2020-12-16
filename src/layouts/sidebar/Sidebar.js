@@ -12,8 +12,8 @@ function Header () {
                     {
                         MENU_BUILDER.map((value, index) => {
                             return (
-                                <li key={ index } className={ currentURL === value.path ? "active" : ""}>
-                                    <a href={ value.path }>
+                                <li key={ index }>
+                                    <a href={ value.path } className={ currentURL === value.path ? "active" : ""}>
                                         <i className={ value.icon }></i>
                                     </a>
                                 </li>
