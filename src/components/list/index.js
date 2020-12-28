@@ -1,18 +1,22 @@
 
 import './index.css'
+import ListDropdown from '../listDropdown'
 
-function List ({ title }) {
+function List ({ tasks }) {
     return (
         <div id="list">
             <ul className="list-group">
-                <li className="list-group-item">
-                    <button className="float-right btn btn-edit"><i className="fa fa-pencil"></i></button>
-                    Cras justo odio
-                </li>
-                <li className="list-group-item">Dapibus ac facilisis in</li>
-                <li className="list-group-item">Morbi leo risus</li>
-                <li className="list-group-item">Porta ac consectetur ac</li>
-                <li className="list-group-item">Vestibulum at eros</li>
+                {tasks.map(function (item, i) {
+                    return (
+                        <li className="list-group-item" key={i}>
+                            <button className="float-right btn btn-edit"  data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                <i className="fa fa-pencil"></i>
+                            </button>
+                            <ListDropdown lists={ ["Edit", "Move To", "Remove"] } isHasLastBorder={ true }/>
+                            { item.title }
+                        </li>
+                    )
+                })}
             </ul>
         </div>
     )
