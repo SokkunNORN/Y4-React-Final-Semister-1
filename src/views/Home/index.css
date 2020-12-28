@@ -18,3 +18,11 @@
     min-width: 272px !important;
     margin: 0px 7px !important;
 }
+
+#home .card-contain-add {
+    height: 65px !important;
+}
+
+#home .card-contain-add .btn {
+    margin-top: -10px !important;
+}
