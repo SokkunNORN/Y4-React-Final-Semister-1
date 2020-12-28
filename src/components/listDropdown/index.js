@@ -1,7 +1,6 @@
 /* eslint-disable jsx-a11y/anchor-is-valid */
 
 function ListDropdown ({ lists, isHasLastBorder = false }) {
-
     return (
         <div id="listDropdown" className="dropdown-menu">
             {lists.map(function (item, i) {
