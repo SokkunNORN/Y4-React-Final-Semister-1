@@ -1,0 +1,14 @@
+
+#home .card-contain {
+    height: 92vh !important;
+    border-radius: 10px !important;
+}
+
+#home .card-contain .btn-more {
+    margin-top: -10px !important;
+    margin-right: -10px !important;
+}
+
+#home .card-contain .btn-more:hover {
+    background:#F0F3F8;
+}
