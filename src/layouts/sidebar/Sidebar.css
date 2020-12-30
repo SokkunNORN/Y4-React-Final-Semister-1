@@ -1,0 +1,39 @@
+
+.sidebar {
+    width: 60px;
+    position: fixed;
+    height: 100vh;
+    background: #FFFFFF;
+    z-index: 10;
+}
+
+.text-muted {
+    color: #adb5bd !important
+}
+
+ul {
+    padding-bottom: 20px
+}
+
+.sidebar ul li a {
+    padding: 15px
+}
+
+.sidebar ul li a {
+    color: #fff;
+    display: block
+}
+
+.sidebar ul li a .fa {
+    width: 30px;
+    color: #898f94 !important
+}
+
+.sidebar ul li a:hover {
+    text-decoration: none
+}
+
+.sidebar ul li a:hover i.fa,
+.sidebar ul li a.active i.fa {
+    color: #49CC68 !important;
+}
