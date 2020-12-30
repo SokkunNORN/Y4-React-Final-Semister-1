@@ -14,7 +14,7 @@ function Card ({ task }) {
                     </button>
                     <ListDropdown lists={ ["Add Task", "Edit Title", "Remove"] } isHasLastBorder={ true }/>
 
-                    <h5 className="card-title">{ task.boardTitle }</h5>
+                    <h6 className="card-title">{ task.boardTitle }</h6>
 
                     <List tasks={ task.tasks }/>
                 </div>
