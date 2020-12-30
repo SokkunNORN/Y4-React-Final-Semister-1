@@ -15,13 +15,10 @@ function Home () {
                     )
                 })}
                 <div className="column">
-                    <div className="card card-contain-add mb-4 text-center">
-                        <div className="card-body">
-                            <button className="btn">
-                                <h5>Add another list <i className="fa fa-plus"></i></h5>
-                            </button>
-                        </div>
-                    </div>
+                    <button className="btn btn-add-board mr-4">
+                        <i className="fa fa-plus-square mr-2"></i>
+                        Add another list
+                    </button>
                 </div>
             </div>
         </div>

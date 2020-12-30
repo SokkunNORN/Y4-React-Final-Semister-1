@@ -19,10 +19,14 @@
     margin: 0px 7px !important;
 }
 
-#home .card-contain-add {
-    height: 65px !important;
+#home .btn-add-board {
+    width: 272px !important;
+    min-width: 272px !important;
+    background: rgba(255, 255, 255, 0.7);
+    color: rgb(0, 0, 0, .7);
 }
 
-#home .card-contain-add .btn {
-    margin-top: -10px !important;
+#home .btn-add-board:hover {
+    background: rgba(255, 255, 255, 1);
+    color: rgb(0, 0, 0, 1);
 }
