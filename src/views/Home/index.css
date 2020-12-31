@@ -1,5 +1,5 @@
 
-#home .card-contain {
+/* #home .card-contain {
     height: 92vh !important;
     border-radius: 5px !important;
 }
@@ -29,4 +29,20 @@
 #home .btn-add-board:hover {
     background: rgba(255, 255, 255, 1);
     color: rgb(0, 0, 0, 1);
+} */
+
+#home {
+    display: flex;
+    width: 100%;
+    justify-content: space-between;
+}
+
+#home .column {
+    width: 30%;
+}
+
+#home .column .droppable-col {
+    width: 100%;
+    height: 50px;
+    color: gray;
 }

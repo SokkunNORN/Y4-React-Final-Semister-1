@@ -1,26 +1,71 @@
-
-import Card from '../../components/card'
+// @ts-nocheck
+import React from 'react'
+import { DragDropContext, Draggable, Droppable } from 'react-beautiful-dnd'
+import _ from 'lodash'
 import './index.css'
-import listTasks from '../../mock.json'
+import lists from '../../mock.json'
 
 function Home () {
+
+    const testData = lists.data
+
+    const handleDragEnd = ({ destination, source }) => {
+        console.log(testData)
+        console.log('Destination = ', destination)
+        console.log('Source = ', source)
+        if (!destination) return
+
+        if (destination.index === source.index && destination.droppableId === source.droppableId) return
+
+        const itemCopy = testData[source.droppableId].tasks[source.index]
+
+        testData[source.droppableId].tasks.splice(source.index, 1)
+
+        testData[destination.droppableId].tasks.splice(destination.index, 0, itemCopy)
+        
+    }
+
     return (
         <div id="home">
-            <div className="d-flex flex-row">
-                {listTasks.data.map(function (item, i) {
+            <DragDropContext onDragEnd={ handleDragEnd }>
+                {_.map(testData, (item, i) => {
                     return (
-                        <div className="column" key={i}>
-                            <Card task={ item } />
+                        <div key={ i } className="column">
+                            <h6>{ item.boardTitle }</h6>
+                            <Droppable droppableId={ String(i) }>
+                                {(provided) => {
+                                    return (
+                                        <div 
+                                            ref={ provided.innerRef }
+                                            { ...provided.droppableProps }
+                                            className={"droppable-col"}
+                                        >
+                                            {item.tasks.map((el, index) => {
+                                                return (
+                                                    <Draggable key={ el.id } index={ index } draggableId={ String(el.id) }>
+                                                        {(provided) => {
+                                                            return ( 
+                                                                <div
+                                                                    className={"item"}
+                                                                    ref={ provided.innerRef }
+                                                                    { ...provided.draggableProps }
+                                                                    { ...provided.dragHandleProps }
+                                                                >
+                                                                    { el.title }
+                                                                </div>
+                                                            )
+                                                        }}
+                                                    </Draggable>
+                                                )
+                                            })}
+                                        </div>
+                                    )
+                                }}
+                            </Droppable>
                         </div>
                     )
                 })}
-                <div className="column">
-                    <button className="btn btn-add-board mr-4">
-                        <i className="fa fa-plus-square mr-2"></i>
-                        Add another list
-                    </button>
-                </div>
-            </div>
+            </DragDropContext>
         </div>
     )
 }
