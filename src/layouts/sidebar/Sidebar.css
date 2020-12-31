@@ -11,6 +11,11 @@
     color: #adb5bd !important
 }
 
+#left-sidebar ul {
+    height: 75%;
+    overflow: auto;
+}
+
 ul {
     padding-bottom: 20px
 }
