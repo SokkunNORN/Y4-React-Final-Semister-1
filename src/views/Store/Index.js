@@ -1,10 +1,10 @@
 
 function Store () {
-    return (
-        <>
-            This is Store page
-        </>
-    )
+  return (
+    <div id="store">
+      This is a Store page
+    </div>
+  )
 }
 
 export default Store

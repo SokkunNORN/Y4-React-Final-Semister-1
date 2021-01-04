@@ -3,9 +3,9 @@ import { APP_NAME, MENU_BUILDER } from '../../navigation/builders/menu.builders'
 
 const currentURL = window.location.pathname
 
-function Header () {
+function Sidebar () {
     return (
-        <>
+        <div id="left-sidebar">
             <div className="sidebar"> 
                 <h4 className="text-muted p-3">{ APP_NAME }</h4>
                 <ul>
@@ -22,8 +22,8 @@ function Header () {
                     }
                 </ul>
             </div>
-        </>
+        </div>
     );
 }
 
-export default Header
+export default Sidebar
