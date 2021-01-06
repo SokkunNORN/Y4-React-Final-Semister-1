@@ -16,6 +16,7 @@ export const routes = [
   {
     path: MENU_BUILDER[0].path,
     component: Dashboard,
+    exact: true,
     routes: [
       {
         path: MENU_BUILDER[0].path,
@@ -41,7 +42,7 @@ export const routes = [
     ]
   },
   {
-    path:  MENU_BUILDER[5].path,
+    path: MENU_BUILDER[5].path,
     component: Login
   },
   {
