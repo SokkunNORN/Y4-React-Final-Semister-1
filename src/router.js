@@ -14,7 +14,7 @@ import Four0Four from './views/four0four'
 
 export const routes = [
   {
-    path: "/dashboard",
+    path: MENU_BUILDER[0].path,
     component: Dashboard,
     routes: [
       {
