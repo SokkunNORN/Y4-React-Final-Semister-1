@@ -41,13 +41,11 @@ export const routes = [
     ]
   },
   {
-    path: "/login",
-    exact: true,
+    path:  MENU_BUILDER[5].path,
     component: Login
   },
   {
     path: "*",
-    exact: true,
     component: Four0Four
   }
 ];
