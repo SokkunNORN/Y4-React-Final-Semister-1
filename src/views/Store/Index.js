@@ -1,9 +1,13 @@
 
+import Dashboard from '../../layouts/Dashboard'
+
 function Store () {
   return (
-    <div id="store">
-      This is a Store page
-    </div>
+      <Dashboard>
+          <div id="store">
+              This is store page
+          </div>
+      </Dashboard>
   )
 }
 

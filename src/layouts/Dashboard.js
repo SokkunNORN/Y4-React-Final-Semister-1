@@ -1,11 +1,8 @@
 
-import { RouteWithSubRoutes } from '../router'
-import { Switch } from "react-router-dom";
-
 import Sidebar from './sidebar/Sidebar'
 import './Dashboard.css'
 
-function Dashboard ({ routes }) {
+function Dashboard ( props ) {
     return (
         <>
             <div className="wrapper d-flex">
@@ -13,11 +10,7 @@ function Dashboard ({ routes }) {
 
                 <div className="contain">
                     <div className="container-fluid mt-4 pl-4 pr-4">
-                        <Switch>
-                            { routes.map((route, i) => (
-                                <RouteWithSubRoutes key={i} { ...route } />
-                            )) }    
-                        </Switch>
+                        { props.children }
                     </div>
                 </div>
             </div>     

@@ -1,9 +1,13 @@
 
+import Dashboard from '../../layouts/Dashboard'
+
 function Watch () {
     return (
-        <>
-            This is Watch page
-        </>
+        <Dashboard>
+            <div id="watch">
+                This is watch page
+            </div>
+        </Dashboard>
     )
 }
 

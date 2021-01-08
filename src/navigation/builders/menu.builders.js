@@ -5,27 +5,27 @@ export const MENU_BUILDER = [
     {
         name: 'Home',
         icon: 'fa fa-dashboard p-1',
-        path: '/dashboard'
+        path: '/'
     },
     {
         name: 'Watch',
         icon: 'fa fa-tv p-1',
-        path: '/dashboard/watch'
+        path: '/watch'
     },
     {
         name: 'Store',
         icon: 'fa fa-taxi p-1',
-        path: '/dashboard/store'
+        path: '/store'
     },
     {
         name: 'Group',
         icon: 'fa fa-users p-1',
-        path: '/dashboard/group'
+        path: '/group'
     },
     {
         name: 'Gaming',
         icon: 'fa fa-gamepad p-1',
-        path: '/dashboard/game'
+        path: '/game'
     },
     {
         name: 'Sign Out',

@@ -1,9 +1,13 @@
 
+import Dashboard from '../../layouts/Dashboard'
+
 function Game () {
     return (
-        <>
-            This is game page
-        </>
+        <Dashboard>
+            <div id="game">
+                This is game page
+            </div>
+        </Dashboard>
     )
 }
 

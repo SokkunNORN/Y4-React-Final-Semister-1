@@ -1,9 +1,13 @@
 
+import Dashboard from '../../layouts/Dashboard'
+
 function Group () {
     return (
-        <>
-            This is Group page
-        </>
+        <Dashboard>
+            <div id="group">
+                This is group page
+            </div>
+        </Dashboard>
     )
 }
 
