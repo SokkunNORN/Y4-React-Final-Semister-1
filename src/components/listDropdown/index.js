@@ -4,7 +4,6 @@ function ListDropdown ({ lists, isHasLastBorder = false }) {
     return (
         <div id="listDropdown" className="dropdown-menu">
             {lists.map(function (item, i) {
-                console.log(lists)
                 if (isHasLastBorder) {
                     if (lists.length - 1 === i) {
                         return (

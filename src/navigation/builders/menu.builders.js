@@ -4,28 +4,13 @@ export const APP_NAME = 'Y4'
 export const MENU_BUILDER = [
     {
         name: 'Home',
-        icon: 'fa fa-dashboard p-1',
-        path: '/dashboard'
+        icon: 'fa fa-tasks p-1',
+        path: '/'
     },
     {
-        name: 'Watch',
-        icon: 'fa fa-tv p-1',
-        path: '/dashboard/watch'
-    },
-    {
-        name: 'Store',
-        icon: 'fa fa-taxi p-1',
-        path: '/dashboard/store'
-    },
-    {
-        name: 'Group',
-        icon: 'fa fa-users p-1',
-        path: '/dashboard/group'
-    },
-    {
-        name: 'Gaming',
-        icon: 'fa fa-gamepad p-1',
-        path: '/dashboard/game'
+        name: 'Graph',
+        icon: 'fa fa-signal p-1',
+        path: '/graph'
     },
     {
         name: 'Sign Out',
