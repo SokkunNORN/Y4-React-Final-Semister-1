@@ -1,14 +1,14 @@
 
 import Dashboard from '../../layouts/Dashboard'
 
-function Game () {
+function Graph () {
     return (
         <Dashboard>
-            <div id="game">
-                This is game page
+            <div id="graph">
+                This is Graph page
             </div>
         </Dashboard>
     )
 }
 
-export default Game
+export default Graph
