@@ -4,7 +4,7 @@ import { Route } from "react-router-dom";
 import { MENU_BUILDER } from './navigation/builders/menu.builders';
 
 import Login from './views/auth'
-import Home from './views/home'
+import Home from './views/Home'
 import Graph from './views/graph'
 import Four0Four from './views/four0four'
 
