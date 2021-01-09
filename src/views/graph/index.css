@@ -22,5 +22,6 @@
     border-radius: 35px 10px, 0, 0 !important;
     background-color: #F0F3F8 !important;
     color: #546E7A !important;
+    border-bottom: .5px solid #546E7A !important;
 }
 
