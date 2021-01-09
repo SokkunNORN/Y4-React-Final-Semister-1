@@ -4,7 +4,12 @@
 import './index.css'
 import Dashboard from '../../layouts/Dashboard'
 import Tab from '../../components/Tab'
-import TabContent from '../../components/Tab/TabContent';
+import TabContent from '../../components/Tab/TabContent'
+import CanvasJSReact from '../../canvas/canvasjs.react'
+import lists from '../../mock.json'
+
+const listBoards = lists.data
+var CanvasJSChart = CanvasJSReact.CanvasJSChart
 
 const tabs = [
     {
@@ -19,10 +24,35 @@ const tabs = [
     }
 ]
 
+var dataPoints = []
+
+listBoards.map(item => {
+    dataPoints.push({
+        label: item.boardTitle,
+        y: item.tasks.length
+    })
+})
+
+const options = {
+    animationEnabled: true,
+    exportEnabled: true,
+    theme: "light2",
+    title:{
+        text: "TASK ON BOARD"
+    },
+    axisY: {
+        includeZero: true
+    },
+    data: [{
+        type: "column",
+        dataPoints: dataPoints
+    }]
+}
+
 const BarChart = () => {
     return (
         <>
-            This is Bar Chart
+            <CanvasJSChart options = {options} />
         </>
     )
 }
