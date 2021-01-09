@@ -9,6 +9,23 @@ import CanvasJSReact from '../../canvas/canvasjs.react'
 import lists from '../../mock.json'
 
 const listBoards = lists.data
+const boardCategory = lists.data.length
+const pieChartData = []
+let totalTask = 0
+
+for (let i = 0; i <= boardCategory - 1; i++){
+    var taskInCategory = lists.data[i].tasks.length
+    totalTask = taskInCategory + totalTask
+}
+
+for(let i = 0; i <= boardCategory - 1; i++){
+    pieChartData.push({
+        label: lists.data[i].boardTitle,
+        y: (lists.data[i].tasks.length * (100/totalTask)).toFixed(2)
+    })
+}
+
+console.log(totalTask);
 var CanvasJSChart = CanvasJSReact.CanvasJSChart
 
 const tabs = [
@@ -48,6 +65,20 @@ const options = {
         dataPoints: dataPoints
     }]
 }
+const pieChart = {
+    animationEnabled: true,
+    exportEnabled: true,
+    theme: "light1",
+    title:{
+        text: "Task Percentages"
+    },
+    data: [{
+        type: "pie",
+        indexLabel: "{label}: {y}%",		
+        startAngle: -90,
+        dataPoints: pieChartData
+    }]
+}
 
 const BarChart = () => {
     return (
@@ -60,7 +91,7 @@ const BarChart = () => {
 function PieChart () {
     return (
         <>
-            This is Pie Chart
+            <CanvasJSChart options = {pieChart} />
         </>
     )
 }
@@ -71,8 +102,8 @@ function Graph () {
             <div id="graph">
                 <div className="card card-contain">
                     <Tab tabs={ tabs }/>
-
-                    <div className="card-body">
+                            
+                    <div className="card-body" style={{textAlign: 'center'}}>
                         <div className="tab-content" id="nav-tabContent">
                             <TabContent
                                 class={ tabs[0].class }
