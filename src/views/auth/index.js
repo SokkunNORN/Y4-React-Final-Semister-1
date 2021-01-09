@@ -49,7 +49,7 @@ function Login () {;
                                         <br />
                                         
                                         <div className="form-group">
-                                            <button type="button" onClick={ submit } className="btn btn-block btn-danger">
+                                            <button type="button" onClick={ submit } className="btn btn-block btn-login">
                                                 <i className="fa fa-sign-in"></i> Login
                                             </button>
                                         </div>

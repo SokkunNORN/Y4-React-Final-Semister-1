@@ -4,7 +4,7 @@ import { DragDropContext, Draggable, Droppable } from 'react-beautiful-dnd'
 import _ from 'lodash'
 import './index.css'
 import lists from '../../mock.json'
-import ListDropdown from '../../components/listDropdown'
+import ListDropdown from '../../components/ListDropdown'
 import Dashboard from '../../layouts/Dashboard'
 
 function Home () {
