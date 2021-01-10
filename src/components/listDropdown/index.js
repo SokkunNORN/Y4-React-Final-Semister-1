@@ -1,6 +1,6 @@
 /* eslint-disable jsx-a11y/anchor-is-valid */
 
-function ListDropdown ({ lists, isHasLastBorder = false }) {
+function ListDropdown ({ lists, isHasLastBorder = false, onHandle, indexBoards = [] }) {
     return (
         <div id="listDropdown" className="dropdown-menu">
             {lists.map(function (item, i) {
@@ -9,13 +9,13 @@ function ListDropdown ({ lists, isHasLastBorder = false }) {
                         return (
                             <div  key={i}>
                                 <div className="dropdown-divider"></div> 
-                                <a className="dropdown-item" href="#">{ item }</a>
+                                <button className="dropdown-item" onClick={() => onHandle(item, indexBoards)}>{ item }</button>
                             </div>
                         )
                     }
-                    return <a className="dropdown-item" href="#" key={i}>{ item }</a>;
+                    return <button className="dropdown-item" key={i} onClick={() => onHandle(item, indexBoards)}>{ item }</button>;
                 }
-                return <a className="dropdown-item" href="#" key={i}>{ item }</a>;
+                return <button className="dropdown-item" key={i} onClick={() => onHandle(item, indexBoards)}>{ item }</button>;
             })}
         </div>
     )
