@@ -1,4 +1,3 @@
-/* eslint-disable jsx-a11y/anchor-is-valid */
 
 function ListDropdown ({ lists, isHasLastBorder = false, onHandle, indexBoards = [] }) {
     return (
