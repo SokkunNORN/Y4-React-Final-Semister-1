@@ -6,27 +6,39 @@
             "tasks": [
                 {   
                     "id": 1,
-                    "title": "Task 9"
+                    "title": "Login with api"
                 },
                 {
                     "id": 2,
-                    "title": "Task 10"
+                    "title": "Integrate api with view of graph"
                 },
                 {
                     "id": 3,
-                    "title": "Task 11"
+                    "title": "Create task with api"
                 },
                 {
                     "id": 4,
-                    "title": "Task 12"
+                    "title": "Update Task with api"
                 },
                 {
                     "id": 5,
-                    "title": "Task 15"
+                    "title": "Remove Task with api"
                 },
                 {
                     "id": 6,
-                    "title": "Task 13"
+                    "title": "Remove board with api"
+                },
+                {
+                    "id": 36,
+                    "title": "Update board with api"
+                },
+                {
+                    "id": 37,
+                    "title": "Add handle error with sweetalert2"
+                },
+                {
+                    "id": 39,
+                    "title": "Add Authentication"
                 }
             ] 
         },
@@ -36,11 +48,11 @@
             "tasks": [
                 {
                     "id": 7,
-                    "title": "Task 5"
+                    "title": "Config View Dashboard page"
                 },
                 {
                     "id": 8,
-                    "title": "Task 6"
+                    "title": "Do Report"
                 }
             ] 
         },
@@ -50,19 +62,15 @@
             "tasks": [
                 {
                     "id": 9,
-                    "title": "Task 1"
+                    "title": "Update Left Side bar"
                 },
                 {
                     "id": 10,
-                    "title": "Task 2"
-                },
-                {
-                    "id": 12,
-                    "title": "Task 3"
+                    "title": "View page Test Case"
                 },
                 {
                     "id": 13,
-                    "title": "Task 4"
+                    "title": "View Graph"
                 }
             ] 
         },
@@ -72,19 +80,27 @@
             "tasks": [
                 {
                     "id": 14,
-                    "title": "Task 1"
+                    "title": "Remove Board"
                 },
                 {
                     "id": 15,
-                    "title": "Task 2"
+                    "title": "Remove Task"
                 },
                 {
                     "id": 16,
-                    "title": "Task 3"
+                    "title": "Dashboard Screen"
                 },
                 {
                     "id": 17,
-                    "title": "Task 4"
+                    "title": "Login Screen"
+                },
+                {
+                    "id": 29,
+                    "title": "Edit Board"
+                },
+                {
+                    "id": 30,
+                    "title": "Edit Board"
                 }
             ] 
         },
@@ -94,19 +110,7 @@
             "tasks": [
                 {
                     "id": 18,
-                    "title": "Task 1"
-                },
-                {
-                    "id": 19,
-                    "title": "Task 2"
-                },
-                {
-                    "id": 20,
-                    "title": "Task 3"
-                },
-                {
-                    "id": 21,
-                    "title": "Task 4"
+                    "title": "Create Task"
                 }
             ] 
         },
@@ -116,19 +120,23 @@
             "tasks": [
                 {
                     "id": 22,
-                    "title": "Task 1"
+                    "title": "Add Sweetalert2"
                 },
                 {
                     "id": 23,
-                    "title": "Task 2"
+                    "title": "Add Bootstrap-4"
                 },
                 {
                     "id": 24,
-                    "title": "Task 3"
+                    "title": "Add Router"
                 },
                 {
                     "id": 25,
-                    "title": "Task 4"
+                    "title": "Set up project"
+                },
+                {
+                    "id": 19,
+                    "title": "Config Nesting Router"
                 }
             ] 
         }
