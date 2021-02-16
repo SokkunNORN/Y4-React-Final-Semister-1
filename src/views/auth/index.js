@@ -2,7 +2,7 @@ import './index.css'
 
 import { MENU_BUILDER } from '../../navigation/builders/menu.builders';
 
-function Login () {;
+function Login () {
     var isShowPassword = false
 
     function submit () {
