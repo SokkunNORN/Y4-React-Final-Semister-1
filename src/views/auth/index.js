@@ -1,11 +1,16 @@
-import './index.css'
-
+import React, { useState } from 'react';
 import { MENU_BUILDER } from '../../navigation/builders/menu.builders';
 
+import './index.css'
+
 function Login () {
-    var isShowPassword = false
+
+    const [isShowPassword, setIsShowPassword] = useState(false)
+    const [username, setUsername] = useState('')
+    const [password, setPassword] = useState('')
 
     function submit () {
+        console.log(username, password)
         window.location.href = MENU_BUILDER[0].path
     }
 
@@ -22,7 +27,12 @@ function Login () {
                                         <div className="row">
                                             <div className="col-12">
                                                 <div className="input-group">
-                                                    <input className="form-control py-2 border-right-0 border" type="text" placeholder="Username" />
+                                                    <input 
+                                                        className="form-control py-2 border-right-0 border shadow-none" 
+                                                        type="text" 
+                                                        placeholder="Username" 
+                                                        onChange={event => setUsername(event.target.value)}
+                                                    />
                                                     <span className="input-group-append">
                                                         <div className="input-group-text bg-transparent">
                                                             <i className="fa fa-user"></i>
@@ -36,9 +46,16 @@ function Login () {
 
                                         <div className="row">
                                             <div className="input-group col-12">
-                                                <input className="form-control py-2 border-right-0 border" type={ isShowPassword ? "text" : "password" } placeholder="Password" />
+                                                <input 
+                                                    className="form-control py-2 border-right-0 border shadow-none" 
+                                                    type={ isShowPassword ? "text" : "password" } 
+                                                    placeholder="Password" 
+                                                    onChange={event => setPassword(event.target.value)}
+                                                />
                                                 <span className="input-group-append">
-                                                    <button className="btn border-left-0 border" type="button">
+                                                    <button className="btn border-left-0 border shadow-none" 
+                                                        type="button" 
+                                                        onClick={() => setIsShowPassword(!isShowPassword)}>
                                                         <i className={ isShowPassword ? "fa fa-eye" : "fa fa-eye-slash"}></i>
                                                     </button>
                                                 </span>
@@ -49,7 +66,11 @@ function Login () {
                                         <br />
                                         
                                         <div className="form-group">
-                                            <button type="button" onClick={ submit } className="btn btn-block btn-login">
+                                            <button 
+                                                type="button" 
+                                                onClick={ submit }
+                                                disabled={username === '' || password === ''} 
+                                                className="btn btn-block btn-danger text-light">
                                                 <i className="fa fa-sign-in"></i> Login
                                             </button>
                                         </div>

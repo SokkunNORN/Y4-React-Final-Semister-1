@@ -7,11 +7,3 @@
     border-color: initial;
     box-shadow: none;
 }
-
-.btn-login {
-    background: #F0F3F8 !important;
-}
-
-.btn-login:hover {
-    background: #d2d4d6 !important;
-}
