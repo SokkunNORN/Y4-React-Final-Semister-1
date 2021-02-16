@@ -1,8 +1,8 @@
 
 import Sidebar from './sidebar/Sidebar'
-import './Dashboard.css'
+import './MainDashboard.css'
 
-function Dashboard ( props ) {
+function MainDashboard ( props ) {
     return (
         <>
             <div className="wrapper d-flex">
@@ -18,4 +18,4 @@ function Dashboard ( props ) {
     )
 }
 
-export default Dashboard;
+export default MainDashboard;
