@@ -8,7 +8,7 @@ function LoingIcon () {
 }
 
 function LoadingIcon () {
-    return <span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
+    return <span className="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
 }
 
 function Login () {
