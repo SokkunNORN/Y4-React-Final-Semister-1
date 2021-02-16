@@ -30,17 +30,17 @@
 
 
 #left-sidebar .sidebar ul li a {
-    padding: 15px;
+    padding: 16px 0px 12px 16px;;
     display: block;
-    border-radius: 8px 0 0 8px;
+    border-left: 3px solid #FFFFFF !important;
 }
 
-#left-sidebar .sidebar ul li a .fa {
+#left-sidebar .sidebar ul li a .material-icons {
     width: 30px;
     color: #898f94 !important
 }
 
-#left-sidebar .sidebar ul li a:hover i.fa,
-#left-sidebar .sidebar ul li a.active i.fa {
+#left-sidebar .sidebar ul li a:hover i.material-icons,
+#left-sidebar .sidebar ul li a.active i.material-icons {
     color: #546E7A !important;
 }

@@ -4,12 +4,12 @@ export const APP_NAME = 'Y4'
 export const MENU_BUILDER = [
     {
         name: 'Dashboard',
-        icon: 'fa fa-sign-out p-1',
+        icon: 'dashboard',
         path: '/dashboard'
     },
     {
-        name: 'Sign Out',
-        icon: 'fa fa-sign-out p-1',
+        name: 'Logout',
+        icon: 'logout',
         path: '/login'
     }
 ]

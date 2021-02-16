@@ -34,7 +34,7 @@ function Sidebar () {
                                     <li key={ index }>
                                         <a href={'#'} onClick={ logout } 
                                             className={ currentURL === value.path ? "active" : ""}>
-                                            <i className={ value.icon }></i>
+                                            <i className="material-icons">{ value.icon }</i>
                                         </a>
                                     </li>
                                 )
@@ -42,7 +42,7 @@ function Sidebar () {
                             return (
                                 <li key={ index }>
                                     <a href={ value.path } className={ currentURL === value.path ? "active" : ""}>
-                                        <i className={ value.icon }></i>
+                                            <i className="material-icons">{ value.icon }</i>
                                     </a>
                                 </li>
                             )
