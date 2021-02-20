@@ -12,3 +12,8 @@
 .contain .main {
     background: #E1F5FE;
 }
+
+.contain .main .title {
+    color: #546E7A !important;
+    font-size: 20px;
+}

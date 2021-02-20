@@ -1,9 +1,10 @@
 import MainDashboard from '../../layouts/MainDashboard'
+import './index.css'
 
 function Dashboard () {
     return (
         <MainDashboard>
-            This is a Dashboard page.
+            <div className="title">Dashboard</div>
         </MainDashboard>
     )
 }
