@@ -9,8 +9,12 @@ function MainDashboard ( props ) {
                 <Sidebar />
 
                 <div className="contain">
-                    <div className="container-fluid mt-4 pl-4 pr-4">
-                        { props.children }
+                    <div className="container-fluid mt-3">
+                        <div className="container-fluid pt-4 main shadow-sm ">
+                            <div className="container-fluid">
+                                { props.children }
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>     

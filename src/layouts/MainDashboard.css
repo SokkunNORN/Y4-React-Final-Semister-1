@@ -2,9 +2,13 @@
 .contain {
     margin-left: 60px;
     width: 100% !important;
-    height: 100vh;
 }
 
-.container-fluid {
-    height: 96vh !important;
+.contain .container-fluid {
+    height: 97vh !important;
+    border-radius: 8px !important;
+}
+
+.contain .main {
+    background: #E1F5FE;
 }
