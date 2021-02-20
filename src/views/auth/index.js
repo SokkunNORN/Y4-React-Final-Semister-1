@@ -20,7 +20,7 @@ function Login () {
     const [txtBtnLogin, setTxtBtnLogin] = useState(' Login')
 
     function submit () {
-        setTxtBtnLogin(' Logining...')
+        setTxtBtnLogin(' Loading...')
         setIsLogin(true)
         setTimeout(() => {
             window.location.href = MENU_BUILDER[0].path
@@ -28,7 +28,7 @@ function Login () {
     }
 
     return (
-        <>
+        <div id="login-page">
             <div className="page-wrap d-flex flex-row align-items-center">
                 <div className="container">
                     <div className="row justify-content-center">
@@ -83,7 +83,7 @@ function Login () {
                                                 type="button" 
                                                 onClick={ submit }
                                                 disabled={username === '' || password === '' || isLogin} 
-                                                className="btn btn-block btn-danger text-light shadow-none">
+                                                className="btn btn-block btn-login text-light shadow-none">
                                                 { isLogin ? <LoadingIcon /> : <LoingIcon /> }
                                                 { txtBtnLogin }
                                             </button>
@@ -95,7 +95,7 @@ function Login () {
                     </div>
                 </div>
             </div>
-        </>
+        </div>
     )
 }
 

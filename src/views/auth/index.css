@@ -1,9 +1,13 @@
-.page-wrap {
+#login-page .page-wrap {
     min-height: 100vh;
 }
 
-.form-control:focus {
+#login-page .form-control:focus {
     outline: 0 !important;
     border-color: initial;
     box-shadow: none;
+}
+
+#login-page .btn-login {
+    background: #01579B !important;
 }
