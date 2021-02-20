@@ -11,6 +11,7 @@
 
 .contain .main {
     background: #E1F5FE;
+    border: .3px solid #B3E5FC !important;
 }
 
 .contain .main .title {
