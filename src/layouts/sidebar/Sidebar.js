@@ -2,6 +2,7 @@
 import Swal from 'sweetalert2'
 import "./Sidebar.css";
 import { APP_NAME, MENU_BUILDER } from '../../navigation/builders/menu.builders';
+import ReactTooltip from 'react-tooltip';
 
 const currentURL = window.location.pathname
 
@@ -33,17 +34,26 @@ function Sidebar () {
                                 return (
                                     <li key={ index }>
                                         <a href={'#'} onClick={ logout } 
-                                            className={ currentURL === value.path ? "active" : ""}>
+                                            className={ currentURL === value.path ? "active" : ""}
+                                            data-tip data-for={ value.icon }>
                                             <i className="material-icons">{ value.icon }</i>
                                         </a>
+                                        <ReactTooltip id={ value.icon } place="right" type="dark" effect="float">
+                                            <span>{ value.name }</span>
+                                        </ReactTooltip>
                                     </li>
                                 )
                             }
                             return (
                                 <li key={ index }>
-                                    <a href={ value.path } className={ currentURL === value.path ? "active" : ""}>
-                                            <i className="material-icons">{ value.icon }</i>
+                                    <a href={ value.path } 
+                                        className={ currentURL === value.path ? "active" : ""}
+                                        data-tip data-for={ value.icon }>
+                                        <i className="material-icons">{ value.icon }</i>
                                     </a>
+                                    <ReactTooltip id={ value.icon } place="right" type="dark" effect="float">
+                                        <span>{ value.name }</span>
+                                    </ReactTooltip>
                                 </li>
                             )
                         })
