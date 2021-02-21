@@ -1,0 +1,20 @@
+
+.contain {
+    margin-left: 60px;
+    width: 100% !important;
+}
+
+.contain .container-fluid {
+    height: 97vh !important;
+    border-radius: 16px !important;
+}
+
+.contain .main {
+    background: #E1F5FE;
+    border: .3px solid #B3E5FC !important;
+}
+
+.contain .main .title {
+    color: #546E7A !important;
+    font-size: 20px;
+}

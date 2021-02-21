@@ -3,19 +3,32 @@ import { MENU_BUILDER } from '../../navigation/builders/menu.builders';
 
 import './index.css'
 
+function LoingIcon () {
+    return <i className="fa fa-sign-in"></i>
+}
+
+function LoadingIcon () {
+    return <span className="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
+}
+
 function Login () {
 
     const [isShowPassword, setIsShowPassword] = useState(false)
     const [username, setUsername] = useState('')
     const [password, setPassword] = useState('')
+    const [isLogin, setIsLogin] = useState(false)
+    const [txtBtnLogin, setTxtBtnLogin] = useState(' Login')
 
     function submit () {
-        console.log(username, password)
-        window.location.href = MENU_BUILDER[0].path
+        setTxtBtnLogin(' Loading...')
+        setIsLogin(true)
+        setTimeout(() => {
+            window.location.href = MENU_BUILDER[0].path
+        }, 1000);
     }
 
     return (
-        <>
+        <div id="login-page">
             <div className="page-wrap d-flex flex-row align-items-center">
                 <div className="container">
                     <div className="row justify-content-center">
@@ -69,9 +82,10 @@ function Login () {
                                             <button 
                                                 type="button" 
                                                 onClick={ submit }
-                                                disabled={username === '' || password === ''} 
-                                                className="btn btn-block btn-danger text-light">
-                                                <i className="fa fa-sign-in"></i> Login
+                                                disabled={username === '' || password === '' || isLogin} 
+                                                className="btn btn-block btn-login text-light shadow-none">
+                                                { isLogin ? <LoadingIcon /> : <LoingIcon /> }
+                                                { txtBtnLogin }
                                             </button>
                                         </div>
                                     </form>
@@ -81,7 +95,7 @@ function Login () {
                     </div>
                 </div>
             </div>
-        </>
+        </div>
     )
 }
 
