@@ -25,8 +25,6 @@ function Login () {
             setTxtBtnLogin(' Loading...')
             setIsLogin(true)
             await login(username, password)
-            setTxtBtnLogin(' Login')
-            setIsLogin(false)
         } catch (error) {
             setTxtBtnLogin(' Login')
             setIsLogin(false)
@@ -34,7 +32,7 @@ function Login () {
     }
 
     async function login (username, password) {
-        fire.auth().signInWithEmailAndPassword(username, password)
+        await fire.auth().signInWithEmailAndPassword(username, password)
         .then((u) => {
             console.log('Successfully Signed Up', u.user.refreshToken);
             setCachedUser(u.user.refreshToken)
