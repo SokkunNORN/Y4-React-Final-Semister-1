@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { MENU_BUILDER } from '../../navigation/builders/menu.builders';
 import { setCachedUser } from '../../utils/cache-util'
-
+import fire from '../../config/fire'
 import './index.css'
 
 function LoingIcon () {
@@ -25,7 +25,6 @@ function Login () {
             setTxtBtnLogin(' Loading...')
             setIsLogin(true)
             await login(username, password)
-            window.location.href = MENU_BUILDER[0].path
             setTxtBtnLogin(' Login')
             setIsLogin(false)
         } catch (error) {
@@ -35,8 +34,17 @@ function Login () {
     }
 
     async function login (username, password) {
-        setCachedUser(username + password);
+        fire.auth().signInWithEmailAndPassword(username, password)
+        .then((u) => {
+            console.log('Successfully Signed Up', u.user.refreshToken);
+            setCachedUser(u.user.refreshToken)
+            window.location.href = MENU_BUILDER[0].path
+        })
+        .catch((err) => {
+            console.log('Error: ' + err.toString());
+        })
     }
+
 
     return (
         <div id="login-page">
