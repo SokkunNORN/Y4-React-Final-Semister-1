@@ -18,6 +18,7 @@ function Sidebar () {
             denyButtonText: `Logout`,
         }).then((result) => {
             if (result.isDenied) {
+                sessionStorage.clear()
                 window.location.href = MENU_BUILDER[MENU_BUILDER.length - 1].path
             }
         })
