@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { MENU_BUILDER } from '../../navigation/builders/menu.builders';
+import { setCachedUser } from '../../utils/cache-util'
 
 import './index.css'
 
@@ -19,12 +20,22 @@ function Login () {
     const [isLogin, setIsLogin] = useState(false)
     const [txtBtnLogin, setTxtBtnLogin] = useState(' Login')
 
-    function submit () {
-        setTxtBtnLogin(' Loading...')
-        setIsLogin(true)
-        setTimeout(() => {
+    async function submit () {
+        try {   
+            setTxtBtnLogin(' Loading...')
+            setIsLogin(true)
+            await login(username, password)
             window.location.href = MENU_BUILDER[0].path
-        }, 1000);
+            setTxtBtnLogin(' Login')
+            setIsLogin(false)
+        } catch (error) {
+            setTxtBtnLogin(' Login')
+            setIsLogin(false)
+        }
+    }
+
+    async function login (username, password) {
+        setCachedUser(username + password);
     }
 
     return (

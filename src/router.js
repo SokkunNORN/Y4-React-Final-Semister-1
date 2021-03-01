@@ -1,5 +1,6 @@
 
 import { Route } from "react-router-dom";
+import { cache } from './utils/cache-util'
 
 import { MENU_BUILDER } from './navigation/builders/menu.builders';
 
@@ -23,6 +24,13 @@ export const routes = [
 ];
 
 export function RouteWithSubRoutes (route) {
+  const currentURL = window.location.pathname
+
+  if(!cache.token && currentURL !== MENU_BUILDER[MENU_BUILDER.length - 1].path) {
+    window.location.href = MENU_BUILDER[MENU_BUILDER.length - 1].path
+    return
+  }
+
   return (
     <Route
       path={ route.path }
