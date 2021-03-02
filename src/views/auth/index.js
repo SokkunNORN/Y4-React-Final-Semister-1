@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { MENU_BUILDER } from '../../navigation/builders/menu.builders';
 import { setCachedUser } from '../../utils/cache-util'
 import fire from '../../config/fire'
+import { handleErrorMassage } from '../../mixins/handleMessage'
 import './index.css'
 
 function LoingIcon () {
@@ -31,9 +32,11 @@ function Login () {
         .then((u) => {
             setCachedUser(u.user.refreshToken)
             window.location.href = MENU_BUILDER[0].path
+            setTxtBtnLogin(' Login')
+            setIsLogin(false)
         })
         .catch((err) => {
-            console.log('Error: ' + err.toString());
+            handleErrorMassage(err.toString())
             setTxtBtnLogin(' Login')
             setIsLogin(false)
         })
