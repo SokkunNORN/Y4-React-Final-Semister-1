@@ -3,6 +3,7 @@ import Swal from 'sweetalert2'
 import "./Sidebar.css";
 import { APP_NAME, MENU_BUILDER } from '../../navigation/builders/menu.builders';
 import ReactTooltip from 'react-tooltip';
+import fire from '../../config/fire'
 
 const currentURL = window.location.pathname
 
@@ -18,6 +19,7 @@ function Sidebar () {
             denyButtonText: `Logout`,
         }).then((result) => {
             if (result.isDenied) {
+                fire.auth().signOut()
                 sessionStorage.clear()
                 window.location.href = MENU_BUILDER[MENU_BUILDER.length - 1].path
             }
