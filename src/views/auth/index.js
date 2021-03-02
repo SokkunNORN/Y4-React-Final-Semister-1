@@ -21,25 +21,21 @@ function Login () {
     const [txtBtnLogin, setTxtBtnLogin] = useState(' Login')
 
     async function submit () {
-        try {   
-            setTxtBtnLogin(' Loading...')
-            setIsLogin(true)
-            await login(username, password)
-        } catch (error) {
-            setTxtBtnLogin(' Login')
-            setIsLogin(false)
-        }
+        setTxtBtnLogin(' Loading...')
+        setIsLogin(true)
+        await login(username, password)
     }
 
     async function login (username, password) {
         await fire.auth().signInWithEmailAndPassword(username, password)
         .then((u) => {
-            console.log('Successfully Signed Up', u.user.refreshToken);
             setCachedUser(u.user.refreshToken)
             window.location.href = MENU_BUILDER[0].path
         })
         .catch((err) => {
             console.log('Error: ' + err.toString());
+            setTxtBtnLogin(' Login')
+            setIsLogin(false)
         })
     }
 
