@@ -28,6 +28,7 @@ export function RouteWithSubRoutes (route) {
 
   if(!cache.token && currentURL !== MENU_BUILDER[MENU_BUILDER.length - 1].path) {
     window.location.href = MENU_BUILDER[MENU_BUILDER.length - 1].path
+    return
   }
 
   return (
