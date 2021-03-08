@@ -5,16 +5,24 @@ import MainDashboard from '../../layouts/MainDashboard'
 import DataTable from '../../components/table'
 import { getUsers } from '../../api/user'
 
-function IconsActionColumn () {
+function editUser (id) {
+    console.log('Edit user with id: ', id)
+}
+
+function deleteUser (id) {
+    console.log('Delete user with id: ', id)
+}
+
+function IconsActionColumn ({value}) {
     return (
         <>
-            <a href='#' className="btn btn-sm">
+            <button href='#' className="btn btn-sm" id={value.id} onClick={ editUser(value.id) }>
                 <i className="material-icons text-primary">mode</i>
-            </a>
+            </button>
 
-            <a href='#' className="btn btn-sm">
+            <button href='#' className="btn btn-sm" id={value.id} onClick={ deleteUser(value.id)} >
                 <i className="material-icons text-danger">delete</i>
-            </a>
+            </button>
         </>
     )
 }
@@ -49,7 +57,10 @@ const columns = [
     {
         name: 'Action',
         center: true,
-        cell: () => <IconsActionColumn />
+        cell: (row) => <IconsActionColumn value={ row } />,
+        ignoreRowClick: true,
+        allowOverflow: true,
+        button: true,
     }
 ];
 
