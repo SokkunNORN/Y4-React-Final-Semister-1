@@ -5,6 +5,20 @@ import MainDashboard from '../../layouts/MainDashboard'
 import DataTable from '../../components/table'
 import { getUsers } from '../../api/user'
 
+function IconsActionColumn () {
+    return (
+        <>
+            <a href='#' className="btn btn-sm">
+                <i className="material-icons text-primary">mode</i>
+            </a>
+
+            <a href='#' className="btn btn-sm">
+                <i className="material-icons text-danger">delete</i>
+            </a>
+        </>
+    )
+}
+
 const columns = [
     {
       name: 'Full Name',
@@ -31,21 +45,29 @@ const columns = [
       name: 'Phone',
       selector: 'phone',
       sortable: true,
+    },
+    {
+        name: 'Action',
+        center: true,
+        cell: () => <IconsActionColumn />
     }
 ];
 
 function User () {
 
     const [users, setUsers] = useState([])
+    const [isLoading, setIsLoading] = useState(true)
 
     useEffect(() => {
         fetchUsers()
     }, []);
 
     const fetchUsers = async () => {
+        setIsLoading(true)
         const data = await getUsers()
 
         setUsers(data)
+        setIsLoading(false)
     }
 
     return (
@@ -60,6 +82,8 @@ function User () {
                     columns={ columns }
                     data={ users }
                     isSelect={ true }
+                    isLoading={isLoading}
+                    isSearch={ true }
                 />
             </div>
         </MainDashboard>
