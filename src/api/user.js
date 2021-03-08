@@ -24,7 +24,6 @@ export async function getUsers() {
             )
             users.push(user)
         })
-        console.log('User from api: ', users)
     })
     .catch((error) => {
         handleErrorMassage("Error getting documents: ", error)
