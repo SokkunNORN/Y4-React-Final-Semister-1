@@ -1,27 +1,53 @@
 
+import React, { useState, useEffect } from 'react'
+
 import MainDashboard from '../../layouts/MainDashboard'
 import DataTable from '../../components/table'
+import { getUsers } from '../../api/user'
 
-const data = [
-    { id: 1, title: 'Conan the Barbarian', year: '1982' },
-    { id: 2, title: 'Conan the Barbarian', year: '1982' },
-    { id: 3, title: 'Conan the Barbarian', year: '1982' }
-]
 const columns = [
     {
-      name: 'Title',
-      selector: 'title',
+      name: 'Full Name',
+      selector: 'fullName',
       sortable: true,
     },
     {
-      name: 'Year',
-      selector: 'year',
+      name: 'Gender',
+      selector: 'gender',
       sortable: true,
-      right: true,
     },
+    {
+      name: 'Age',
+      selector: 'age',
+      sortable: true,
+      rigth: true
+    },,
+    {
+      name: 'Province',
+      selector: 'province',
+      sortable: true,
+    },,
+    {
+      name: 'Phone',
+      selector: 'phone',
+      sortable: true,
+    }
 ];
 
 function User () {
+
+    const [users, setUsers] = useState([])
+
+    useEffect(() => {
+        fetchUsers()
+    }, []);
+
+    const fetchUsers = async () => {
+        const data = await getUsers()
+
+        setUsers(data)
+    }
+
     return (
         <MainDashboard>
             <div id="user">
@@ -32,7 +58,7 @@ function User () {
 
                 <DataTable
                     columns={ columns }
-                    data={ data }
+                    data={ users }
                     isSelect={ true }
                 />
             </div>

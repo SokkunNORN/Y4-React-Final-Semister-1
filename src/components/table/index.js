@@ -1,7 +1,7 @@
 
 import DataTable, { createTheme } from 'react-data-table-component'
 
-function Table ({data, columns, isSelect = false}) {
+function Table ({columns, data = [], isSelect = false}) {
     
     createTheme('solarized', {
         background: {
