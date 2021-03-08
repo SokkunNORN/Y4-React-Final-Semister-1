@@ -5,10 +5,11 @@ import { User } from '../class/user'
 
 const docRef = fire.firestore().collection("user");
 
-export async function getUsers() {
+export async function getUsers(value) {
     var users = []
 
-    await docRef.get().then((querySnapshot) => {
+    await docRef
+    .get().then((querySnapshot) => {
         querySnapshot.forEach((doc) => {
             const user = new User(
                 doc.id,

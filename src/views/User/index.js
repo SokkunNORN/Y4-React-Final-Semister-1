@@ -64,7 +64,7 @@ function User () {
 
     const fetchUsers = async () => {
         setIsLoading(true)
-        const data = await getUsers()
+        const data = await getUsers(null)
 
         setUsers(data)
         setIsLoading(false)
