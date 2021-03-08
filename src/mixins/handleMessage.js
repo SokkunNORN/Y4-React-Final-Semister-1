@@ -2,7 +2,7 @@ import Swal from "sweetalert2";
 
 export const handleErrorMassage = errorMessage => {
     Swal.fire({
-        title: "Error!",
+        icon: 'error',
         text: errorMessage,
         showDenyButton: true,
         showConfirmButton: false,

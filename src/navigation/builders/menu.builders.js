@@ -8,6 +8,11 @@ export const MENU_BUILDER = [
         path: '/dashboard'
     },
     {
+        name: 'User',
+        icon: 'account_circle',
+        path: '/user'
+    },
+    {
         name: 'Logout',
         icon: 'logout',
         path: '/login'
