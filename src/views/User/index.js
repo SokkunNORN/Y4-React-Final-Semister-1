@@ -28,32 +28,11 @@ function IconsActionColumn ({value}) {
 }
 
 const columns = [
-    {
-      name: 'Full Name',
-      selector: 'fullName',
-      sortable: true,
-    },
-    {
-      name: 'Gender',
-      selector: 'gender',
-      sortable: true,
-    },
-    {
-      name: 'Age',
-      selector: 'age',
-      sortable: true,
-      rigth: true
-    },,
-    {
-      name: 'Province',
-      selector: 'province',
-      sortable: true,
-    },,
-    {
-      name: 'Phone',
-      selector: 'phone',
-      sortable: true,
-    },
+    { name: 'Full Name', selector: 'fullName', sortable: true, },
+    { name: 'Gender', selector: 'gender', sortable: true, },
+    { name: 'Age', selector: 'age', sortable: true, rigth: true },
+    { name: 'Province', selector: 'province', sortable: true, },
+    { name: 'Phone', selector: 'phone', sortable: true, },
     {
         name: 'Action',
         center: true,
@@ -92,9 +71,11 @@ function User () {
                 <DataTable
                     columns={ columns }
                     data={ users }
-                    isSelect={ true }
                     isLoading={isLoading}
-                    isSearch={ true }
+                    isSelect
+                    isSearch
+                    isBtnCreate
+                    actionButtons={['edit']}
                 />
             </div>
         </MainDashboard>
