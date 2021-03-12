@@ -1,6 +1,5 @@
 
 import DataTable, { createTheme } from 'react-data-table-component'
-import memoize from 'memoize-one'
 import { isString } from 'lodash'
 import './index.css'
 
@@ -22,7 +21,7 @@ function Search () {
 function ButtonCreate () {
     return (
         <div className='col'>
-            <button className="btn btn-primary float-right">
+            <button className="btn btn-primary float-right" onClick={() => create()}>
                 <i className="fa fa-plus mr-2"></i>
                 Create
             </button>
@@ -42,30 +41,44 @@ function SearchCreate ({isSearch, isBtnCreate}) {
     return <></>
 }
 
-function editUser (id) {
-    console.log('Edit user with id: ', id)
+function edit (id) {
+    console.log('Edit with id: ', id)
 }
 
-function deleteUser (id) {
-    console.log('Delete user with id: ', id)
+function remove (id) {
+    console.log('Delete with id: ', id)
 }
 
-function IconsActionColumn ({value}) {
+function create () {
+    console.log('Create function is working...')
+}
+
+function IconsActionColumn ({ value, buttons }) {
     return (
         <>
-            <button href='#' className="btn btn-sm" id={value.id} onClick={ editUser(value.id) }>
-                <i className="material-icons text-primary">mode</i>
-            </button>
-
-            <button href='#' className="btn btn-sm" id={value.id} onClick={ deleteUser(value.id)} >
-                <i className="material-icons text-danger">delete</i>
-            </button>
+            {
+                buttons.map((item, index) => {
+                    if (item == 'edit') {
+                        return(
+                            <button href='#' className="btn btn-sm" key={ index } onClick={() => edit(value.id)} >
+                                <i className="material-icons text-primary">mode</i>
+                            </button>
+                        )
+                    } else if (item == 'delete') {
+                        return (
+                            <button href='#' className="btn btn-sm" key={ index } onClick={() => remove(value.id)} >
+                                <i className="material-icons text-danger">delete</i>
+                            </button>
+                        )
+                    }
+                })
+            }
         </>
     )
 }
 
 function Table ({
-    columns, 
+    columns = [], 
     data = [], 
     isSelect = false, 
     isLoading = true, 
@@ -77,6 +90,15 @@ function Table ({
     const isValid = actionButtons.every(isString) && actionButtons.every(e => ['edit', 'delete'].includes(e))
     if (!isValid) {
         console.error('"actionButtons" prop must be an array of string ["edit", "delete"]')
+    } else {
+        if (actionButtons.length > 0) {
+            columns.map(value => {
+                if (value.name == 'Action') {
+                    value.cell = (row) => (<IconsActionColumn value={ row } buttons={actionButtons} />)
+                    value.center = true
+                }
+            })
+        }
     }
 
     createTheme('solarized', {
