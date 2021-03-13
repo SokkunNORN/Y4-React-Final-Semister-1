@@ -3,38 +3,6 @@ import DataTable, { createTheme } from 'react-data-table-component'
 import { isString } from 'lodash'
 import './index.css'
 
-function edit (id) {
-    console.log('Edit with id: ', id)
-}
-
-function remove (id) {
-    console.log('Delete with id: ', id)
-}
-
-function IconsActionColumn ({ value, buttons }) {
-    return (
-        <>
-            {
-                buttons.map((item, index) => {
-                    if (item == 'edit') {
-                        return(
-                            <button href='#' className="btn btn-sm" key={ index } onClick={() => edit(value.id)} >
-                                <i className="material-icons text-primary">mode</i>
-                            </button>
-                        )
-                    } else if (item == 'delete') {
-                        return (
-                            <button href='#' className="btn btn-sm" key={ index } onClick={() => remove(value.id)} >
-                                <i className="material-icons text-danger">delete</i>
-                            </button>
-                        )
-                    }
-                })
-            }
-        </>
-    )
-}
-
 function Table ({
     columns = [], 
     data = [], 
@@ -42,17 +10,38 @@ function Table ({
     isLoading = true, 
     isSearch = false, 
     isCreate = false ,
-    actionButtons = []
+    actionButtons = [],
+    createFunction = () => {},
+    editFunction = () => {},
+    deleteFunction = () => {}
 }) {
     
+    const paginationRowsPerPageOptions = [5, 10, 20, 50, 100]
     const isValid = actionButtons.every(isString) && actionButtons.every(e => ['edit', 'delete'].includes(e))
+
     if (!isValid) {
         console.error('"actionButtons" prop must be an array of string ["edit", "delete"]')
     } else {
         if (actionButtons.length > 0) {
             columns.map(value => {
                 if (value.name == 'Action') {
-                    value.cell = (row) => (<IconsActionColumn value={ row } buttons={actionButtons} />)
+                    value.cell = (row) => (
+                        actionButtons.map((item, index) => {
+                            if (item == 'edit') {
+                                return(
+                                    <button href='#' className="btn btn-sm" key={ index } onClick={() => editFunction(row)} >
+                                        <i className="material-icons text-primary">mode</i>
+                                    </button>
+                                )
+                            } else if (item == 'delete') {
+                                return (
+                                    <button href='#' className="btn btn-sm" key={ index } onClick={() => deleteFunction(row)} >
+                                        <i className="material-icons text-danger">delete</i>
+                                    </button>
+                                )
+                            }
+                        })
+                    )
                     value.center = true
                 }
             })
@@ -64,8 +53,6 @@ function Table ({
           default: 'none',
         }
     });
-
-    const paginationRowsPerPageOptions = [5, 10, 20, 50, 100]
 
     return (
         <div id='data-table'>

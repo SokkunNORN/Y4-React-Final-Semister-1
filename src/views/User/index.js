@@ -18,6 +18,14 @@ function createUser () {
     console.log('Create user function is working...')
 }
 
+function editUser (id) {
+    console.log('Edit with id: ', id)
+}
+
+function deleteUser (id) {
+    console.log('Delete with id: ', id)
+}
+
 function User () {
 
     const [users, setUsers] = useState([])
@@ -44,13 +52,16 @@ function User () {
                 <br />
 
                 <DataTable
-                    columns={ columns }
-                    data={ users }
+                    columns={columns}
+                    data={users}
                     isLoading={isLoading}
                     isSelect
                     isSearch
                     isCreate
                     actionButtons={['edit', 'delete']}
+                    createFunction={() => createUser()}
+                    editFunction={(value) => editUser(value)}
+                    deleteFunction={(value) => deleteUser(value)}
                 />
             </div>
         </MainDashboard>
