@@ -4,6 +4,7 @@ import React, { useState, useEffect } from 'react'
 import MainDashboard from '../../layouts/MainDashboard'
 import DataTable from '../../components/table'
 import { getUsers } from '../../api/user'
+import { showDetailDialog } from '../../components/showDetailDialog'
 
 const columns = [
     { name: 'Full Name', selector: 'fullName', sortable: true, link: true},
@@ -15,7 +16,18 @@ const columns = [
 ];
 
 function showDetailUser (value) {
-    console.log('User detail: ', value)
+    const data = [
+        { label: 'Full Name', text: value.fullName },
+        { label: 'Age', text: value.age },
+        { label: 'Gender', text: value.gender },
+        { label: 'Phone', text: value.phone },
+        { label: 'Email', text: value.email },
+        { label: 'Province', text: value.province },
+        { label: 'Username', text: value.username },
+        { label: 'Created At', text: value.createdAt },
+        { label: 'Updated At', text: value.updatedAt }
+    ]
+    showDetailDialog('User Detail', data)
 }
 
 function createUser () {
