@@ -13,11 +13,22 @@ function Table ({
     actionButtons = [],
     createFunction = () => {},
     editFunction = () => {},
-    deleteFunction = () => {}
+    deleteFunction = () => {},
+    showDetailFunction = () => {}
 }) {
     
     const paginationRowsPerPageOptions = [5, 10, 20, 50, 100]
     const isValid = actionButtons.every(isString) && actionButtons.every(e => ['edit', 'delete'].includes(e))
+
+    columns.map(value => {
+        if ('link' in value) {
+            if (value.link == true) {
+                value.cell = (row) => (
+                    <a href='#' onClick={() => showDetailFunction(row)}>{ row[value.selector] }</a>
+                )
+            }
+        }
+    })
 
     if (!isValid) {
         console.error('"actionButtons" prop must be an array of string ["edit", "delete"]')

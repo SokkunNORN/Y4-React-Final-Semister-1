@@ -6,13 +6,17 @@ import DataTable from '../../components/table'
 import { getUsers } from '../../api/user'
 
 const columns = [
-    { name: 'Full Name', selector: 'fullName', sortable: true, },
-    { name: 'Gender', selector: 'gender', sortable: true, },
+    { name: 'Full Name', selector: 'fullName', sortable: true, link: true},
+    { name: 'Gender', selector: 'gender', sortable: true },
     { name: 'Age', selector: 'age', sortable: true, rigth: true },
     { name: 'Province', selector: 'province', sortable: true, },
     { name: 'Phone', selector: 'phone', sortable: true, },
     { name: 'Action' }
 ];
+
+function showDetailUser (value) {
+    console.log('User detail: ', value)
+}
 
 function createUser () {
     console.log('Create user function is working...')
@@ -60,8 +64,9 @@ function User () {
                     isCreate
                     actionButtons={['edit', 'delete']}
                     createFunction={() => createUser()}
-                    editFunction={(value) => editUser(value)}
-                    deleteFunction={(value) => deleteUser(value)}
+                    editFunction={value => editUser(value)}
+                    deleteFunction={value => deleteUser(value)}
+                    showDetailFunction={value => showDetailUser(value)}
                 />
             </div>
         </MainDashboard>
