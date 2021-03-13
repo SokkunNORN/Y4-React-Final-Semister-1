@@ -14,6 +14,10 @@ const columns = [
     { name: 'Action' }
 ];
 
+function createUser () {
+    console.log('Create user function is working...')
+}
+
 function User () {
 
     const [users, setUsers] = useState([])
@@ -45,7 +49,7 @@ function User () {
                     isLoading={isLoading}
                     isSelect
                     isSearch
-                    isBtnCreate
+                    isCreate
                     actionButtons={['edit', 'delete']}
                 />
             </div>

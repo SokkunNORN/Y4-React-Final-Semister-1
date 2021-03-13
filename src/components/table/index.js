@@ -3,54 +3,12 @@ import DataTable, { createTheme } from 'react-data-table-component'
 import { isString } from 'lodash'
 import './index.css'
 
-function Search () {
-    return (
-        <div className='col'>
-            <div className="input-group">
-                <input className="form-control py-2 shadow-none" type="search" placeholder="Search..." id="example-search-input" />
-                <span className="input-group-append">
-                    <button className="btn btn-outline-secondary" type="button">
-                        <i className="fa fa-search"></i>
-                    </button>
-                </span>
-            </div>
-        </div>
-    )
-}
-
-function ButtonCreate () {
-    return (
-        <div className='col'>
-            <button className="btn btn-primary float-right" onClick={() => create()}>
-                <i className="fa fa-plus mr-2"></i>
-                Create
-            </button>
-        </div>
-    )
-}
-
-function SearchCreate ({isSearch, isBtnCreate}) {
-    if (isSearch || isBtnCreate) {
-        return (
-            <div className='row'>
-                { isSearch ? <Search /> : '' }
-                { isBtnCreate ? <ButtonCreate /> : '' }
-            </div>
-        )
-    }
-    return <></>
-}
-
 function edit (id) {
     console.log('Edit with id: ', id)
 }
 
 function remove (id) {
     console.log('Delete with id: ', id)
-}
-
-function create () {
-    console.log('Create function is working...')
 }
 
 function IconsActionColumn ({ value, buttons }) {
@@ -83,7 +41,7 @@ function Table ({
     isSelect = false, 
     isLoading = true, 
     isSearch = false, 
-    isBtnCreate = false ,
+    isCreate = false ,
     actionButtons = []
 }) {
     
@@ -111,10 +69,33 @@ function Table ({
 
     return (
         <div id='data-table'>
-            <SearchCreate 
-                isSearch={ isSearch } 
-                isBtnCreate={ isBtnCreate } 
-            />
+
+            <div className='row'>
+                {
+                    isSearch ? (
+                        <div className='col'>
+                            <div className="input-group">
+                                <input className="form-control py-2 shadow-none" type="search" placeholder="Search..." />
+                                <span className="input-group-append">
+                                    <button className="btn btn-outline-secondary" type="button">
+                                        <i className="fa fa-search"></i>
+                                    </button>
+                                </span>
+                            </div>
+                        </div>
+                    ) : <></>  
+                }
+                {
+                    isCreate ? (
+                        <div className='col'>
+                            <button className="btn btn-primary float-right" onClick={() => createFunction()}>
+                                <i className="fa fa-plus mr-2"></i>
+                                Create
+                            </button>
+                        </div>
+                    ) : <></>
+                }
+            </div>
 
             <DataTable
                 data={ data }
