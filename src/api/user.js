@@ -2,6 +2,7 @@
 import fire from '../config/fire'
 import { handleErrorMassage } from '../mixins/handleMessage'
 import { User } from '../class/user'
+import { dateFormatterLocalTime } from '../mixins/dateTime'
 
 const docRef = fire.firestore().collection("user");
 
@@ -20,8 +21,8 @@ export async function getUsers(value) {
                 doc.data().phone,
                 doc.data().province,
                 doc.data().username,
-                doc.data().createdAt.toDate().toString(),
-                doc.data().updatedAt.toDate().toString()
+                dateFormatterLocalTime(doc.data().createdAt),
+                dateFormatterLocalTime(doc.data().updatedAt)
             )
             users.push(user)
         })
