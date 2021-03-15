@@ -5,7 +5,7 @@ import MainDashboard from '../../layouts/MainDashboard'
 import DataTable from '../../components/table'
 import { getUsers, writeUser } from '../../api/user'
 import { showDetailDialog } from '../../components/showDetailDialog'
-import UserForm from './Form/Form'
+import FormCreate from './Form/FormCreate'
 
 const columns = [
     { name: 'Full Name', selector: 'fullName', sortable: true, link: true},
@@ -81,7 +81,7 @@ function User () {
                 </div>
                 <br />
 
-                <UserForm 
+                <FormCreate 
                     isOpen={ isShowDialog }
                     onClose={ onCloseDialog }
                     onSubmit={(value) => createUser(value) }
