@@ -1,7 +1,7 @@
 import { useState } from 'react'
 import Modal from 'react-bootstrap4-modal'
 
-function UserForm ({
+function FormCreate ({
     isOpen = true,
     onSubmit = () => {},
     onClose = () => {}
@@ -137,4 +137,4 @@ function UserForm ({
     )
 }
 
-export default UserForm
+export default FormCreate
