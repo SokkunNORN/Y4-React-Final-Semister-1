@@ -9,7 +9,8 @@ function Table ({
     isSelect = false, 
     isLoading = true, 
     isSearch = false, 
-    isCreate = false ,
+    isCreate = false,
+    defaultSortField = '',
     actionButtons = [],
     createFunction = () => {},
     editFunction = () => {},
@@ -102,6 +103,8 @@ function Table ({
                 theme="solarized"
                 noHeader
                 pagination
+                defaultSortAsc
+                defaultSortField={defaultSortField}
                 paginationRowsPerPageOptions={ paginationRowsPerPageOptions }
                 selectableRowsHighlight
                 progressPending={ isLoading }

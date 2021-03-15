@@ -3,8 +3,9 @@ import React, { useState, useEffect } from 'react'
 
 import MainDashboard from '../../layouts/MainDashboard'
 import DataTable from '../../components/table'
-import { getUsers } from '../../api/user'
+import { getUsers, writeUser } from '../../api/user'
 import { showDetailDialog } from '../../components/showDetailDialog'
+import UserForm from './Form/Form'
 
 const columns = [
     { name: 'Full Name', selector: 'fullName', sortable: true, link: true},
@@ -12,6 +13,7 @@ const columns = [
     { name: 'Age', selector: 'age', sortable: true, rigth: true },
     { name: 'Province', selector: 'province', sortable: true, },
     { name: 'Phone', selector: 'phone', sortable: true, },
+    { name: 'Created At', selector: 'createdAt', sortable: true, },
     { name: 'Action' }
 ];
 
@@ -30,9 +32,6 @@ function showDetailUser (value) {
     showDetailDialog('User Detail', data)
 }
 
-function createUser () {
-    console.log('Create user function is working...')
-}
 
 function editUser (id) {
     console.log('Edit with id: ', id)
@@ -46,6 +45,7 @@ function User () {
 
     const [users, setUsers] = useState([])
     const [isLoading, setIsLoading] = useState(true)
+    const [isShowDialog, setIsShowDialog] = useState(false)
 
     useEffect(() => {
         fetchUsers()
@@ -59,6 +59,20 @@ function User () {
         setIsLoading(false)
     }
 
+    function openDialogCreatUser () {
+        setIsShowDialog(true)
+    }
+
+    async function createUser(user) {
+        await writeUser(user)
+
+        fetchUsers()
+    }
+
+    function onCloseDialog () {
+        setIsShowDialog(false)
+    }
+
     return (
         <MainDashboard>
             <div id="user">
@@ -67,6 +81,12 @@ function User () {
                 </div>
                 <br />
 
+                <UserForm 
+                    isOpen={ isShowDialog }
+                    onClose={ onCloseDialog }
+                    onSubmit={(value) => createUser(value) }
+                />
+
                 <DataTable
                     columns={columns}
                     data={users}
@@ -74,8 +94,9 @@ function User () {
                     isSelect
                     isSearch
                     isCreate
+                    defaultSortField='createdAt'
                     actionButtons={['edit', 'delete']}
-                    createFunction={() => createUser()}
+                    createFunction={() => openDialogCreatUser()}
                     editFunction={value => editUser(value)}
                     deleteFunction={value => deleteUser(value)}
                     showDetailFunction={value => showDetailUser(value)}
