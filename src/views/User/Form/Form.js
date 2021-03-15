@@ -1,6 +1,5 @@
 import { useState } from 'react'
 import Modal from 'react-bootstrap4-modal'
-import { User } from '../../../class/user'
 
 function UserForm ({
     isOpen = true,
