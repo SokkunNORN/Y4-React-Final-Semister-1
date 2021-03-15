@@ -103,7 +103,7 @@ function FormCreate ({
                             value={age}/>
                     </div>
                     <div className="form-group">
-                        <input type="text" className="form-control" placeholder="Phone" r
+                        <input type="text" className="form-control" placeholder="Phone"
                             onChange={event => setPhone(event.target.value)} 
                             value={phone}/>
                     </div>
