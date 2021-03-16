@@ -44,3 +44,12 @@ export async function writeUser(user) {
         return false
     });
 }
+
+export async function removeUser(id) {
+    await docRef.doc(id).delete().then(() => {
+        return true
+    }).catch((error) => {
+        handleErrorMassage("Error removing document: ", error)
+        return false
+    });
+}
