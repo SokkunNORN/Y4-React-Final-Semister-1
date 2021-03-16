@@ -1,9 +1,10 @@
 import { useState } from 'react'
 import Modal from 'react-bootstrap4-modal'
+import { writeUser } from '../../../api/user'
 
 function FormCreate ({
     isOpen = true,
-    onSubmit = () => {},
+    onRefresh = () => {},
     onClose = () => {}
 }) {
 
@@ -37,11 +38,11 @@ function FormCreate ({
 
     const [fullName, setFullName] = useState('')
     const [username, setUsername] = useState('')
-    const [gender, setGender] = useState('')
+    const [gender, setGender] = useState('Male')
     const [age, setAge] = useState('')
     const [phone, setPhone] = useState('')
     const [email, setEmail] = useState('')
-    const [province, setProvince] = useState('')
+    const [province, setProvince] = useState(provinces[0])
 
     function onResetData () {
         onClose()
@@ -55,7 +56,7 @@ function FormCreate ({
         setProvince('')
     }
 
-    function onCreate () {
+    async function onCreate () {
         const user = {
             'age': age,
             'email': email,
@@ -67,8 +68,9 @@ function FormCreate ({
             'createdAt': new Date(),
             'updatedAt': new Date()
         }
-        
-        onSubmit(user)
+
+        await writeUser(user)
+        onRefresh()
         onResetData()
     }
 
