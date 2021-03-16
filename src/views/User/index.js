@@ -3,9 +3,11 @@ import React, { useState, useEffect } from 'react'
 
 import MainDashboard from '../../layouts/MainDashboard'
 import DataTable from '../../components/table'
-import { getUsers, writeUser } from '../../api/user'
+import { getUsers } from '../../api/user'
 import { showDetailDialog } from '../../components/showDetailDialog'
 import FormCreate from './Form/FormCreate'
+import FormUpdate from './Form/FormUpdate'
+import FormDelete from './Form/FormDelete'
 
 const columns = [
     { name: 'Full Name', selector: 'fullName', sortable: true, link: true},
@@ -32,20 +34,14 @@ function showDetailUser (value) {
     showDetailDialog('User Detail', data)
 }
 
-
-function editUser (id) {
-    console.log('Edit with id: ', id)
-}
-
-function deleteUser (id) {
-    console.log('Delete with id: ', id)
-}
-
 function User () {
 
     const [users, setUsers] = useState([])
+    const [user, setUser] = useState({})
     const [isLoading, setIsLoading] = useState(true)
-    const [isShowDialog, setIsShowDialog] = useState(false)
+    const [isShowDialogCreate, setIsShowDialogCreate] = useState(false)
+    const [isShowDialogUpdate, setIsShowDialogUpdate] = useState(false)
+    const [isShowDialogDelete, setIsShowDialogDelete] = useState(false)
 
     useEffect(() => {
         fetchUsers()
@@ -59,18 +55,14 @@ function User () {
         setIsLoading(false)
     }
 
-    function openDialogCreatUser () {
-        setIsShowDialog(true)
+    function openDialogEditUser (user) {
+        setUser(user)
+        setIsShowDialogUpdate(true)
     }
 
-    async function createUser(user) {
-        await writeUser(user)
-
-        fetchUsers()
-    }
-
-    function onCloseDialog () {
-        setIsShowDialog(false)
+    function openDialogDeleteUser(user) {
+        setUser(user)
+        setIsShowDialogDelete(true)
     }
 
     return (
@@ -82,9 +74,23 @@ function User () {
                 <br />
 
                 <FormCreate 
-                    isOpen={ isShowDialog }
-                    onClose={ onCloseDialog }
-                    onSubmit={(value) => createUser(value) }
+                    isOpen={ isShowDialogCreate }
+                    onClose={ () => setIsShowDialogCreate(false) }
+                    onRefresh={ () => fetchUsers() }
+                />
+
+                <FormUpdate
+                    isOpen={ isShowDialogUpdate }
+                    user={ user }
+                    onRefresh={ () => fetchUsers() }
+                    onClose={ () => setIsShowDialogUpdate(false) }
+                />
+
+                <FormDelete 
+                    isOpen={ isShowDialogDelete }
+                    user={ user }
+                    onRefresh={ () => fetchUsers() }
+                    onClose={ () => setIsShowDialogDelete(false) }
                 />
 
                 <DataTable
@@ -96,9 +102,9 @@ function User () {
                     isCreate
                     defaultSortField='createdAt'
                     actionButtons={['edit', 'delete']}
-                    createFunction={() => openDialogCreatUser()}
-                    editFunction={value => editUser(value)}
-                    deleteFunction={value => deleteUser(value)}
+                    createFunction={() => setIsShowDialogCreate(true)}
+                    editFunction={value => openDialogEditUser(value)}
+                    deleteFunction={value => openDialogDeleteUser(value)}
                     showDetailFunction={value => showDetailUser(value)}
                 />
             </div>
