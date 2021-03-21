@@ -3,71 +3,49 @@ import React, { useState, useEffect } from 'react'
 
 import MainDashboard from '../../layouts/MainDashboard'
 import DataTable from '../../components/table'
-import { getUsers } from '../../api/user'
+import { getUsers, writeUser } from '../../api/user'
+import { showDetailDialog } from '../../components/showDetailDialog'
+import FormCreate from './Form/FormCreate'
+
+const columns = [
+    { name: 'Full Name', selector: 'fullName', sortable: true, link: true},
+    { name: 'Gender', selector: 'gender', sortable: true },
+    { name: 'Age', selector: 'age', sortable: true, rigth: true },
+    { name: 'Province', selector: 'province', sortable: true, },
+    { name: 'Phone', selector: 'phone', sortable: true, },
+    { name: 'Created At', selector: 'createdAt', sortable: true, },
+    { name: 'Action' }
+];
+
+function showDetailUser (value) {
+    const data = [
+        { label: 'Full Name', text: value.fullName },
+        { label: 'Age', text: value.age },
+        { label: 'Gender', text: value.gender },
+        { label: 'Phone', text: value.phone },
+        { label: 'Email', text: value.email },
+        { label: 'Province', text: value.province },
+        { label: 'Username', text: value.username },
+        { label: 'Created At', text: value.createdAt },
+        { label: 'Updated At', text: value.updatedAt }
+    ]
+    showDetailDialog('User Detail', data)
+}
+
 
 function editUser (id) {
-    console.log('Edit user with id: ', id)
+    console.log('Edit with id: ', id)
 }
 
 function deleteUser (id) {
-    console.log('Delete user with id: ', id)
+    console.log('Delete with id: ', id)
 }
-
-function IconsActionColumn ({value}) {
-    return (
-        <>
-            <button href='#' className="btn btn-sm" id={value.id} onClick={ editUser(value.id) }>
-                <i className="material-icons text-primary">mode</i>
-            </button>
-
-            <button href='#' className="btn btn-sm" id={value.id} onClick={ deleteUser(value.id)} >
-                <i className="material-icons text-danger">delete</i>
-            </button>
-        </>
-    )
-}
-
-const columns = [
-    {
-      name: 'Full Name',
-      selector: 'fullName',
-      sortable: true,
-    },
-    {
-      name: 'Gender',
-      selector: 'gender',
-      sortable: true,
-    },
-    {
-      name: 'Age',
-      selector: 'age',
-      sortable: true,
-      rigth: true
-    },,
-    {
-      name: 'Province',
-      selector: 'province',
-      sortable: true,
-    },,
-    {
-      name: 'Phone',
-      selector: 'phone',
-      sortable: true,
-    },
-    {
-        name: 'Action',
-        center: true,
-        cell: (row) => <IconsActionColumn value={ row } />,
-        ignoreRowClick: true,
-        allowOverflow: true,
-        button: true,
-    }
-];
 
 function User () {
 
     const [users, setUsers] = useState([])
     const [isLoading, setIsLoading] = useState(true)
+    const [isShowDialog, setIsShowDialog] = useState(false)
 
     useEffect(() => {
         fetchUsers()
@@ -81,6 +59,20 @@ function User () {
         setIsLoading(false)
     }
 
+    function openDialogCreatUser () {
+        setIsShowDialog(true)
+    }
+
+    async function createUser(user) {
+        await writeUser(user)
+
+        fetchUsers()
+    }
+
+    function onCloseDialog () {
+        setIsShowDialog(false)
+    }
+
     return (
         <MainDashboard>
             <div id="user">
@@ -89,12 +81,25 @@ function User () {
                 </div>
                 <br />
 
+                <FormCreate 
+                    isOpen={ isShowDialog }
+                    onClose={ onCloseDialog }
+                    onSubmit={(value) => createUser(value) }
+                />
+
                 <DataTable
-                    columns={ columns }
-                    data={ users }
-                    isSelect={ true }
+                    columns={columns}
+                    data={users}
                     isLoading={isLoading}
-                    isSearch={ true }
+                    isSelect
+                    isSearch
+                    isCreate
+                    defaultSortField='createdAt'
+                    actionButtons={['edit', 'delete']}
+                    createFunction={() => openDialogCreatUser()}
+                    editFunction={value => editUser(value)}
+                    deleteFunction={value => deleteUser(value)}
+                    showDetailFunction={value => showDetailUser(value)}
                 />
             </div>
         </MainDashboard>
