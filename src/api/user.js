@@ -44,3 +44,14 @@ export async function writeUser(user) {
         return false
     });
 }
+
+export async function updateUser(user) {
+    await fire.firestore().collection('/user').doc(user.id).set(user)
+    .then(() => {
+        return true
+    })
+    .catch((error) => {
+        handleErrorMassage("Error writing document: ", error)
+        return false
+    });
+}

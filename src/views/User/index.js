@@ -3,9 +3,10 @@ import React, { useState, useEffect } from 'react'
 
 import MainDashboard from '../../layouts/MainDashboard'
 import DataTable from '../../components/table'
-import { getUsers, writeUser } from '../../api/user'
+import { getUsers, writeUser, updateUser } from '../../api/user'
 import { showDetailDialog } from '../../components/showDetailDialog'
 import FormCreate from './Form/FormCreate'
+import FormUpdate from './Form/FormUpdate'
 
 const columns = [
     { name: 'Full Name', selector: 'fullName', sortable: true, link: true},
@@ -32,11 +33,6 @@ function showDetailUser (value) {
     showDetailDialog('User Detail', data)
 }
 
-
-function editUser (id) {
-    console.log('Edit with id: ', id)
-}
-
 function deleteUser (id) {
     console.log('Delete with id: ', id)
 }
@@ -46,6 +42,8 @@ function User () {
     const [users, setUsers] = useState([])
     const [isLoading, setIsLoading] = useState(true)
     const [isShowDialog, setIsShowDialog] = useState(false)
+    const [isShowUpdateDialog, setIsShowUpdateDialog] = useState(false)
+    const [dataForUpdate, setDataForUpdate] = useState([])
 
     useEffect(() => {
         fetchUsers()
@@ -63,14 +61,29 @@ function User () {
         setIsShowDialog(true)
     }
 
+    function openDialogUpdateUser (data) {
+        setIsShowUpdateDialog(true)
+        setDataForUpdate(data)
+    }
+
     async function createUser(user) {
         await writeUser(user)
 
         fetchUsers()
     }
 
+    async function editUser (user) {
+        await updateUser(user)
+
+        fetchUsers()
+    }
+
     function onCloseDialog () {
         setIsShowDialog(false)
+    }
+
+    function onCloseUpdateDialog () {
+        setIsShowUpdateDialog(false)
     }
 
     return (
@@ -87,6 +100,13 @@ function User () {
                     onSubmit={(value) => createUser(value) }
                 />
 
+                <FormUpdate
+                    value = { dataForUpdate }
+                    isOpen={ isShowUpdateDialog }
+                    onClose={ onCloseUpdateDialog }
+                    onSubmit={(value) => editUser(value) }
+                />
+
                 <DataTable
                     columns={columns}
                     data={users}
@@ -97,7 +117,7 @@ function User () {
                     defaultSortField='createdAt'
                     actionButtons={['edit', 'delete']}
                     createFunction={() => openDialogCreatUser()}
-                    editFunction={value => editUser(value)}
+                    editFunction={value => openDialogUpdateUser(value)}
                     deleteFunction={value => deleteUser(value)}
                     showDetailFunction={value => showDetailUser(value)}
                 />
