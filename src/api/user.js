@@ -34,6 +34,30 @@ export async function getUsers(value) {
     return users
 }
 
+export async function selectUser(id) {
+    let user = {}
+
+    await docRef.doc(id)
+    .get().then(doc => {
+        user = new User(
+            doc.id,
+            doc.data().age,
+            doc.data().email,
+            doc.data().fullName,
+            doc.data().gender,
+            doc.data().phone,
+            doc.data().province,
+            doc.data().username,
+            dateFormatterLocalTime(doc.data().createdAt),
+            dateFormatterLocalTime(doc.data().updatedAt)
+        )
+    })
+    .catch((error) => {
+        handleErrorMassage("Error getting documents: ", error)
+    });
+    return user
+}
+
 export async function writeUser(user) {
     await docRef.add(user)
     .then(() => {
@@ -45,13 +69,22 @@ export async function writeUser(user) {
     });
 }
 
-export async function updateUser(user) {
-    await fire.firestore().collection('/user').doc(user.id).set(user)
+export async function removeUser(id) {
+    await docRef.doc(id).delete().then(() => {
+        return true
+    }).catch((error) => {
+        handleErrorMassage("Error removing document: ", error)
+        return false
+    });
+}
+
+export async function modifyUser(id, user) {
+    await docRef.doc(id).update(user)
     .then(() => {
         return true
     })
     .catch((error) => {
-        handleErrorMassage("Error writing document: ", error)
+        handleErrorMassage("Error updating document: ", error)
         return false
     });
 }
