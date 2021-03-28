@@ -65,6 +65,10 @@ function User () {
         setIsShowDialogDelete(true)
     }
 
+    function onCloseUpdateDialog () {
+        setIsShowDialogUpdate(false)
+    }
+
     return (
         <MainDashboard>
             <div id="user">
