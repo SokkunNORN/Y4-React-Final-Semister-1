@@ -81,7 +81,7 @@ function User () {
 
                 <FormUpdate
                     isOpen={ isShowDialogUpdate }
-                    user={ user }
+                    id={ user.id }
                     onRefresh={ () => fetchUsers() }
                     onClose={ () => setIsShowDialogUpdate(false) }
                 />
