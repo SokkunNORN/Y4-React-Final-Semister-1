@@ -9,27 +9,29 @@ import FormUpdate from './Form/FormUpdate'
 import FormDelete from './Form/FormDelete'
 
 const columns = [
-    { name: 'Name', selector: 'fullName', sortable: true, link: true},
-    { name: 'Item Price', selector: 'age', sortable: true },
-    { name: 'From', selector: 'gender', sortable: true, rigth: true },
-    { name: 'To', selector: 'province', sortable: true, },
-    { name: 'Sender Phone', selector: 'phone', sortable: true, },
-    { name: 'Receiver Phone', selector: 'createdAt', sortable: true, },
-    { name: 'Status', selector: 'username', sortable: true, },
+    { name: 'Name', selector: 'name', sortable: true, link: true},
+    { name: 'Deliver Price($)', selector: 'deliverPrice', sortable: true },
+    { name: 'From', selector: 'from', sortable: true, rigth: true },
+    { name: 'Sender Phone', selector: 'senderPhone', sortable: true, },
+    { name: 'To', selector: 'to', sortable: true, },
+    { name: 'Receiver Phone', selector: 'receiverPhone', sortable: true, },
+    { name: 'Status', selector: 'status', sortable: true, },
+    { name: 'Created At', selector: 'createdAt', sortable: true, },
     { name: 'Action' }
 ];
 
 function showDetailUser (value) {
     const data = [
-        { label: 'Name', text: value.fullName },
-        { label: 'Item Price', text: value.age },
-        { label: 'Deliver Price', text: value.age },
-        { label: 'From', text: value.gender },
-        { label: 'To', text: value.phone },
-        { label: 'Sender Phone', text: value.email },
-        { label: 'Reciever Phone', text: value.province },
-        { label: 'Status', text: value.username },
-        { label: 'Created At', text: value.createdAt }
+        { label: 'Name', text: value.name },
+        { label: 'Item Price', text: value.itemPrice },
+        { label: 'Deliver Price', text: value.deliverPrice },
+        { label: 'From', text: value.from },
+        { label: 'Sender Phone', text: value.senderPhone },
+        { label: 'To', text: value.to },
+        { label: 'Reciever Phone', text: value.receiverPhone },
+        { label: 'Status', text: value.status },
+        { label: 'Created At', text: value.createdAt },
+        { label: 'Updated At', text: value.updatedAt }
     ]
     showDetailDialog('User Detail', data)
 }

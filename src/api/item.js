@@ -1,35 +1,38 @@
 
 import fire from '../config/fire'
 import { handleErrorMassage } from '../mixins/handleMessage'
-import { User } from '../class/user'
+import { Item } from '../class/item'
 import { dateFormatterLocalTime } from '../mixins/dateTime'
 
 const docRef = fire.firestore().collection("/item-send-list");
 
 export async function getUsers(value) {
-    var users = []
+    var items = []
 
     await docRef
     .get().then((querySnapshot) => {
         querySnapshot.forEach((doc) => {
-            const user = new User(
+            const item = new Item(
                 doc.id,
-                doc.data().age,
-                doc.data().email,
-                doc.data().fullName,
-                doc.data().gender,
-                doc.data().phone,
-                doc.data().province,
-                doc.data().username
+                doc.data().itemPrice,
+                doc.data().deliverPrice,
+                doc.data().from,
+                doc.data().to,
+                doc.data().senderPhone,
+                doc.data().receiverPhone,
+                doc.data().status,
+                dateFormatterLocalTime(doc.data().createdAt),
+                dateFormatterLocalTime(doc.data().updatedAt),
+                doc.data().name
             )
-            users.push(user)
+            items.push(item)
         })
     })
     .catch((error) => {
         handleErrorMassage("Error getting documents: ", error)
     });
 
-    return users
+    return items
 }
 
 export async function selectUser(id) {
@@ -37,7 +40,7 @@ export async function selectUser(id) {
 
     await docRef.doc(id)
     .get().then(doc => {
-        user = new User(
+        user = new Item(
             doc.id,
             doc.data().age,
             doc.data().email,
