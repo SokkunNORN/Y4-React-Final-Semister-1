@@ -1,6 +1,6 @@
 import { useState } from 'react'
 import Modal from 'react-bootstrap4-modal'
-import { writeUser } from '../../../api/user'
+import { writeItem } from '../../../api/item'
 
 function FormCreate ({
     isOpen = true,
@@ -36,40 +36,41 @@ function FormCreate ({
         'Tbong Khmum'
     ]
 
-    const [fullName, setFullName] = useState('')
-    const [username, setUsername] = useState('')
-    const [gender, setGender] = useState('Male')
-    const [age, setAge] = useState('')
-    const [phone, setPhone] = useState('')
-    const [email, setEmail] = useState('')
-    const [province, setProvince] = useState(provinces[0])
+    const [name, setName] = useState('')
+    const [from, setFrom] = useState('')
+    const [to, setTo] = useState('')
+    const [senderPhone, setSenderPhone] = useState('')
+    const [receiverPhone, setReceiverPhone] = useState('')
+    const [itemPrice, setItemPrice] = useState('')
+    const [deliverPrice, setdeliverPrice] = useState('')
 
     function onResetData () {
         onClose()
 
-        setFullName('')
-        setUsername('')
-        setGender('')
-        setAge('')
-        setPhone('')
-        setEmail('')
-        setProvince('')
+        setName('')
+        setFrom('')
+        setTo('')
+        setSenderPhone('')
+        setReceiverPhone('')
+        setItemPrice('')
+        setdeliverPrice('')
     }
 
     async function onCreate () {
-        const user = {
-            'age': age,
-            'email': email,
-            'fullName': fullName,
-            'gender': gender,
-            'phone': phone,
-            'province': province,
-            'username': username,
+        const item = {
+            'name': name,
+            'from': from,
+            'to': to,
+            'senderPhone': senderPhone,
+            'receiverPhone': receiverPhone,
+            'itemPrice': itemPrice,
+            'deliverPrice': deliverPrice,
+            'status': 'Sending',
             'createdAt': new Date(),
             'updatedAt': new Date()
         }
 
-        await writeUser(user)
+        await writeItem(item)
         onRefresh()
         onResetData()
     }
@@ -78,52 +79,57 @@ function FormCreate ({
         <div id="user-form-create">
             <Modal visible={ isOpen }>
                 <div className="modal-body">
-                    <h5 className="modal-title">Create User</h5>
+                    <h5 className="modal-title">Create Item</h5>
                     <br />
 
                     <div className="form-group">
-                        <input type="text" className="form-control" placeholder="Full Name" 
-                            onChange={event => setFullName(event.target.value)} 
-                            value={fullName}/>
+                        <input type="text" className="form-control" placeholder="Name" 
+                            onChange={event => setName(event.target.value)} 
+                            value={name}/>
                     </div>
                     <div className="form-group">
-                        <input type="text" className="form-control" placeholder="Username" 
-                            onChange={event => setUsername(event.target.value)} 
-                            value={username}/>
-                    </div>
-                    <div className="form-group">
-                        <select className="form-control" placeholder="Gender" 
-                            onChange={event => setGender(event.target.value)} 
-                            value={gender}>
-                            <option value='Male'>Male</option>
-                            <option value='Famale'>Female</option>
-                        </select>
-                    </div>
-                    <div className="form-group">
-                        <input type="number" className="form-control" placeholder="Age" 
-                            onChange={event => setAge(event.target.value)} 
-                            value={age}/>
-                    </div>
-                    <div className="form-group">
-                        <input type="text" className="form-control" placeholder="Phone"
-                            onChange={event => setPhone(event.target.value)} 
-                            value={phone}/>
-                    </div>
-                    <div className="form-group">
-                        <input type="email" className="form-control" placeholder="Email" 
-                            onChange={event => setEmail(event.target.value)} 
-                            value={email}/>
-                    </div>
-                    <div className="form-group">
-                        <select className="form-control" placeholder="Province" 
-                            onChange={event => setProvince(event.target.value)} 
-                            value={province}>
+                        <select className="form-control" placeholder="From" 
+                            onChange={event => setFrom(event.target.value)} 
+                            value={from}>
+                            <option>From...</option>
                             {
                                 provinces.map((item, index) => (
                                     <option value={item} key={index}>{item}</option>
                                 ))
                             }
                         </select>
+                    </div>
+                    <div className="form-group">
+                        <select className="form-control" placeholder="To" 
+                            onChange={event => setTo(event.target.value)} 
+                            value={to}>
+                            <option>To...</option>
+                            {
+                                provinces.map((item, index) => (
+                                    <option value={item} key={index}>{item}</option>
+                                ))
+                            }
+                        </select>
+                    </div>
+                    <div className="form-group">
+                        <input type="text" className="form-control" placeholder="Sender Phone" 
+                            onChange={event => setSenderPhone(event.target.value)} 
+                            value={senderPhone}/>
+                    </div>
+                    <div className="form-group">
+                        <input type="text" className="form-control" placeholder="Receiver Phone" 
+                            onChange={event => setReceiverPhone(event.target.value)} 
+                            value={receiverPhone}/>
+                    </div>
+                    <div className="form-group">
+                        <input type="text" className="form-control" placeholder="Item Price($)" 
+                            onChange={event => setItemPrice(event.target.value)} 
+                            value={itemPrice}/>
+                    </div>
+                    <div className="form-group">
+                        <input type="text" className="form-control" placeholder="Deliver Price($)" 
+                            onChange={event => setdeliverPrice(event.target.value)} 
+                            value={deliverPrice}/>
                     </div>
 
                     <br />
