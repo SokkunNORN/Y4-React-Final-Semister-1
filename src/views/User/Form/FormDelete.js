@@ -20,7 +20,7 @@ function FormDelete ({
             <Modal visible={ isOpen }>
                 <div className="modal-body">
                     <h5 className="modal-title">Conformation</h5>
-                    <small>Are you sure you want to delete this favorite account?</small>
+                    <small>Are you sure you want to delete this account?</small>
                     <br />
                     <br />
                     
