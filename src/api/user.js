@@ -22,7 +22,8 @@ export async function getUsers(value) {
                 doc.data().province,
                 doc.data().username,
                 dateFormatterLocalTime(doc.data().createdAt),
-                dateFormatterLocalTime(doc.data().updatedAt)
+                dateFormatterLocalTime(doc.data().updatedAt),
+                doc.data().role
             )
             users.push(user)
         })
@@ -49,7 +50,8 @@ export async function selectUser(id) {
             doc.data().province,
             doc.data().username,
             dateFormatterLocalTime(doc.data().createdAt),
-            dateFormatterLocalTime(doc.data().updatedAt)
+            dateFormatterLocalTime(doc.data().updatedAt),
+            doc.data().role
         )
     })
     .catch((error) => {

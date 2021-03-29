@@ -15,6 +15,7 @@ const columns = [
     { name: 'Age', selector: 'age', sortable: true, rigth: true },
     { name: 'Province', selector: 'province', sortable: true, },
     { name: 'Phone', selector: 'phone', sortable: true, },
+    { name: 'Role', selector: 'role.role', sortable: true, },
     { name: 'Created At', selector: 'createdAt', sortable: true, },
     { name: 'Action' }
 ];
@@ -28,6 +29,7 @@ function showDetailUser (value) {
         { label: 'Email', text: value.email },
         { label: 'Province', text: value.province },
         { label: 'Username', text: value.username },
+        { label: 'Role', text: value.role.role },
         { label: 'Created At', text: value.createdAt },
         { label: 'Updated At', text: value.updatedAt }
     ]
