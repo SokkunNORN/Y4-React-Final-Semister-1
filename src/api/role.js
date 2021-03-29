@@ -26,7 +26,6 @@ export async function getRole() {
 }
 
 export async function selectRole(id) {
-    console.log('from db: ', id)
     var role = {}
 
     await docRef.doc(id)
