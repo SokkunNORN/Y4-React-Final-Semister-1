@@ -1,32 +1,32 @@
 
 import Modal from 'react-bootstrap4-modal'
-import { removeUser } from '../../../api/user'
+import { removeItem } from '../../../api/item'
 
 function FormDelete ({
     isOpen = true,
-    user = {},
+    item = {},
     onClose = () => {},
     onRefresh = () => {}
 }) {
 
     async function onDelete() {
-        await removeUser(user.id)
+        await removeItem(item.id)
         onClose()
         onRefresh()
     }
 
     return (
-        <div id="user-form-delete">
+        <div id="item-form-delete">
             <Modal visible={ isOpen }>
                 <div className="modal-body">
                     <h5 className="modal-title">Conformation</h5>
-                    <small>Are you sure you want to delete this favorite account?</small>
+                    <small>Are you sure you want to delete this item?</small>
                     <br />
                     <br />
                     
                     <div className='row'>
-                        <div className='col'>Full Name</div>
-                        <div className='col text-right'>{ user.fullName }</div>
+                        <div className='col'>Name</div>
+                        <div className='col text-right'>{ item.name }</div>
                     </div>
 
                     <br />

@@ -76,7 +76,7 @@ function FormCreate ({
     }
 
     return (
-        <div id="user-form-create">
+        <div id="item-form-create">
             <Modal visible={ isOpen }>
                 <div className="modal-body">
                     <h5 className="modal-title">Create Item</h5>
