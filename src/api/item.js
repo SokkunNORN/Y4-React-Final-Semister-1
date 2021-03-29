@@ -6,7 +6,7 @@ import { dateFormatterLocalTime } from '../mixins/dateTime'
 
 const docRef = fire.firestore().collection("/item-send-list");
 
-export async function getUsers(value) {
+export async function getItems(value) {
     var items = []
 
     await docRef
@@ -35,32 +35,33 @@ export async function getUsers(value) {
     return items
 }
 
-export async function selectUser(id) {
-    let user = {}
+export async function selectItem(id) {
+    let item = {}
 
     await docRef.doc(id)
     .get().then(doc => {
-        user = new Item(
+        item = new Item(
             doc.id,
-            doc.data().age,
-            doc.data().email,
-            doc.data().fullName,
-            doc.data().gender,
-            doc.data().phone,
-            doc.data().province,
-            doc.data().username,
+            doc.data().itemPrice,
+            doc.data().deliverPrice,
+            doc.data().from,
+            doc.data().to,
+            doc.data().senderPhone,
+            doc.data().receiverPhone,
+            doc.data().status,
             dateFormatterLocalTime(doc.data().createdAt),
-            dateFormatterLocalTime(doc.data().updatedAt)
+            dateFormatterLocalTime(doc.data().updatedAt),
+            doc.data().name
         )
     })
     .catch((error) => {
         handleErrorMassage("Error getting documents: ", error)
     });
-    return user
+    return item
 }
 
-export async function writeUser(user) {
-    await docRef.add(user)
+export async function writeItem(item) {
+    await docRef.add(item)
     .then(() => {
         return true
     })
@@ -70,7 +71,7 @@ export async function writeUser(user) {
     });
 }
 
-export async function removeUser(id) {
+export async function removeItem(id) {
     await docRef.doc(id).delete().then(() => {
         return true
     }).catch((error) => {
@@ -79,8 +80,8 @@ export async function removeUser(id) {
     });
 }
 
-export async function modifyUser(id, user) {
-    await docRef.doc(id).update(user)
+export async function modifyItem(id, item) {
+    await docRef.doc(id).update(item)
     .then(() => {
         return true
     })
