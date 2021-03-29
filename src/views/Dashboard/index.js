@@ -2,76 +2,74 @@ import React, { useState, useEffect } from 'react'
 
 import MainDashboard from '../../layouts/MainDashboard'
 import DataTable from '../../components/table'
-import { getUsers } from '../../api/item'
+import { getItems } from '../../api/item'
 import { showDetailDialog } from '../../components/showDetailDialog'
 import FormCreate from './Form/FormCreate'
 import FormUpdate from './Form/FormUpdate'
 import FormDelete from './Form/FormDelete'
 
 const columns = [
-    { name: 'Name', selector: 'fullName', sortable: true, link: true},
-    { name: 'Item Price', selector: 'age', sortable: true },
-    { name: 'From', selector: 'gender', sortable: true, rigth: true },
-    { name: 'To', selector: 'province', sortable: true, },
-    { name: 'Sender Phone', selector: 'phone', sortable: true, },
-    { name: 'Receiver Phone', selector: 'createdAt', sortable: true, },
-    { name: 'Status', selector: 'username', sortable: true, },
+    { name: 'Name', selector: 'name', sortable: true, link: true},
+    { name: 'Deliver Price($)', selector: 'deliverPrice', sortable: true },
+    { name: 'From', selector: 'from', sortable: true, rigth: true },
+    { name: 'Sender Phone', selector: 'senderPhone', sortable: true, },
+    { name: 'To', selector: 'to', sortable: true, },
+    { name: 'Receiver Phone', selector: 'receiverPhone', sortable: true, },
+    { name: 'Status', selector: 'status', sortable: true, },
+    { name: 'Created At', selector: 'createdAt', sortable: true, },
     { name: 'Action' }
 ];
 
-function showDetailUser (value) {
+function showDetailItem (value) {
     const data = [
-        { label: 'Name', text: value.fullName },
-        { label: 'Item Price', text: value.age },
-        { label: 'Deliver Price', text: value.age },
-        { label: 'From', text: value.gender },
-        { label: 'To', text: value.phone },
-        { label: 'Sender Phone', text: value.email },
-        { label: 'Reciever Phone', text: value.province },
-        { label: 'Status', text: value.username },
-        { label: 'Created At', text: value.createdAt }
+        { label: 'Name', text: value.name },
+        { label: 'Item Price', text: value.itemPrice },
+        { label: 'Deliver Price', text: value.deliverPrice },
+        { label: 'From', text: value.from },
+        { label: 'Sender Phone', text: value.senderPhone },
+        { label: 'To', text: value.to },
+        { label: 'Reciever Phone', text: value.receiverPhone },
+        { label: 'Status', text: value.status },
+        { label: 'Created At', text: value.createdAt },
+        { label: 'Updated At', text: value.updatedAt }
     ]
-    showDetailDialog('User Detail', data)
+    showDetailDialog('Item Detail', data)
 }
 
-function User () {
+function Item () {
 
-    const [users, setUsers] = useState([])
-    const [user, setUser] = useState({})
+    const [items, setItems] = useState([])
+    const [item, setItem] = useState({})
     const [isLoading, setIsLoading] = useState(true)
     const [isShowDialogCreate, setIsShowDialogCreate] = useState(false)
     const [isShowDialogUpdate, setIsShowDialogUpdate] = useState(false)
     const [isShowDialogDelete, setIsShowDialogDelete] = useState(false)
 
     useEffect(() => {
-        fetchUsers()
+        fetchItems()
     }, []);
 
-    const fetchUsers = async () => {
+    const fetchItems = async () => {
         setIsLoading(true)
-        const data = await getUsers(null)
+        const data = await getItems(null)
 
-        setUsers(data)
+        setItems(data)
         setIsLoading(false)
     }
 
-    function openDialogEditUser (user) {
-        setUser(user)
+    function openDialogEditItem (item) {
+        setItem(item)
         setIsShowDialogUpdate(true)
     }
 
-    function openDialogDeleteUser(user) {
-        setUser(user)
+    function openDialogDeleteItem(item) {
+        setItem(item)
         setIsShowDialogDelete(true)
-    }
-
-    function onCloseUpdateDialog () {
-        setIsShowDialogUpdate(false)
     }
 
     return (
         <MainDashboard>
-            <div id="user">
+            <div id="item">
                 <div className="title">
                     Item Send Lists
                 </div>
@@ -80,26 +78,26 @@ function User () {
                 <FormCreate 
                     isOpen={ isShowDialogCreate }
                     onClose={ () => setIsShowDialogCreate(false) }
-                    onRefresh={ () => fetchUsers() }
+                    onRefresh={ () => fetchItems() }
                 />
 
                 <FormUpdate
                     isOpen={ isShowDialogUpdate }
-                    id={ user.id }
-                    onRefresh={ () => fetchUsers() }
+                    id={ item.id }
+                    onRefresh={ () => fetchItems() }
                     onClose={ () => setIsShowDialogUpdate(false) }
                 />
 
                 <FormDelete 
                     isOpen={ isShowDialogDelete }
-                    user={ user }
-                    onRefresh={ () => fetchUsers() }
+                    item={ item }
+                    onRefresh={ () => fetchItems() }
                     onClose={ () => setIsShowDialogDelete(false) }
                 />
 
                 <DataTable
                     columns={columns}
-                    data={users}
+                    data={items}
                     isLoading={isLoading}
                     isSelect
                     isSearch
@@ -107,13 +105,13 @@ function User () {
                     defaultSortField='createdAt'
                     actionButtons={['edit', 'delete']}
                     createFunction={() => setIsShowDialogCreate(true)}
-                    editFunction={value => openDialogEditUser(value)}
-                    deleteFunction={value => openDialogDeleteUser(value)}
-                    showDetailFunction={value => showDetailUser(value)}
+                    editFunction={value => openDialogEditItem(value)}
+                    deleteFunction={value => openDialogDeleteItem(value)}
+                    showDetailFunction={value => showDetailItem(value)}
                 />
             </div>
         </MainDashboard>
     )
 }
 
-export default User
+export default Item

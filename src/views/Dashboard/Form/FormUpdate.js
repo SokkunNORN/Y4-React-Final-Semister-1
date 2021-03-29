@@ -1,7 +1,7 @@
 
 import React, { useState } from 'react'
 import Modal from 'react-bootstrap4-modal'
-import { selectUser, modifyUser } from '../../../api/user'
+import { selectItem, modifyItem } from '../../../api/item'
 
 var previousStatusDialog = false
 
@@ -39,112 +39,130 @@ function FormUpdate ({
         'Tbong Khmum'
     ]
 
-    const [fullName, setFullName] = useState('')
-    const [username, setUsername] = useState('')
-    const [gender, setGender] = useState('')
-    const [age, setAge] = useState('')
-    const [phone, setPhone] = useState('')
-    const [email, setEmail] = useState('')
-    const [province, setProvince] = useState('')
+    const statuses = ['Sending', 'Received']
 
-    const fetchUser = async id => {
-        const user = await selectUser(id)
+    const [name, setName] = useState('')
+    const [from, setFrom] = useState('')
+    const [to, setTo] = useState('')
+    const [senderPhone, setSenderPhone] = useState('')
+    const [receiverPhone, setReceiverPhone] = useState('')
+    const [itemPrice, setItemPrice] = useState('')
+    const [deliverPrice, setdeliverPrice] = useState('')
+    const [itemStatus, setItemStatus] = useState('')
 
-        setFullName(user.fullName)
-        setUsername(user.username)
-        setGender(user.gender)
-        setAge(user.age)
-        setPhone(user.phone)
-        setEmail(user.email)
-        setProvince(user.province)
+    const fetchItem = async id => {
+        const item = await selectItem(id)
+
+        setName(item.name)
+        setFrom(item.from)
+        setTo(item.to)
+        setSenderPhone(item.senderPhone)
+        setReceiverPhone(item.receiverPhone)
+        setItemPrice(item.itemPrice)
+        setdeliverPrice(item.deliverPrice)
+        setItemStatus(item.status)
     }
 
-    isOpen && previousStatusDialog != isOpen && fetchUser(id)
+    isOpen && previousStatusDialog != isOpen && fetchItem(id)
     
     previousStatusDialog = isOpen
 
     function onResetData () {
         onClose()
 
-        setFullName('')
-        setUsername('')
-        setGender('')
-        setAge('')
-        setPhone('')
-        setEmail('')
-        setProvince('')
+        setName('')
+        setFrom('')
+        setTo('')
+        setSenderPhone('')
+        setReceiverPhone('')
+        setItemPrice('')
+        setdeliverPrice('')
+        setItemStatus('')
     }
 
     async function onUpdate () {
-        const user = {
-            'age': age,
-            'email': email,
-            'fullName': fullName,
-            'gender': gender,
-            'phone': phone,
-            'province': province,
-            'username': username,
+        const item = {
+            'name': name,
+            'from': from,
+            'to': to,
+            'senderPhone': senderPhone,
+            'receiverPhone': receiverPhone,
+            'itemPrice': itemPrice,
+            'deliverPrice': deliverPrice,
+            'status': itemStatus || '',
             'updatedAt': new Date()
         }
 
-        await modifyUser(id, user)
+        await modifyItem(id, item)
 
         onRefresh()
         onResetData()
     }
 
     return (
-        <div id="user-form-update">
+        <div id="item-form-update">
             <Modal visible={ isOpen }>
                 <div className="modal-body">
-                    <h5 className="modal-title">Update User</h5>
+                    <h5 className="modal-title">Update Item</h5>
                     <br />
 
                     <div className="form-group">
-                        <input type="text" className="form-control" placeholder="Full Name" 
-                            onChange={event => setFullName(event.target.value)}
-                            value={fullName}
-                            />
+                        <input type="text" className="form-control" placeholder="Name" 
+                            onChange={event => setName(event.target.value)} 
+                            value={name}/>
                     </div>
                     <div className="form-group">
-                        <input type="text" className="form-control" placeholder="Username" 
-                            onChange={event => setUsername(event.target.value)} 
-                            value={username}/>
-                    </div>
-                    <div className="form-group">
-                        <select className="form-control" placeholder="Gender" 
-                            onChange={event => setGender(event.target.value)} 
-                            value={gender}>
-                            <option value='Male'>Male</option>
-                            <option value='Famale'>Female</option>
+                        <select className="form-control" placeholder="From" 
+                            onChange={event => setFrom(event.target.value)} 
+                            value={from}>
+                            <option>From...</option>
+                            {
+                                provinces.map((item, index) => (
+                                    <option value={item} key={index}>{item}</option>
+                                ))
+                            }
                         </select>
                     </div>
                     <div className="form-group">
-                        <input type="number" className="form-control" placeholder="Age" 
-                            onChange={event => setAge(event.target.value)} 
-                            value={age}/>
-                    </div>
-                    <div className="form-group">
-                        <input type="text" className="form-control" placeholder="Phone"
-                            onChange={event => setPhone(event.target.value)} 
-                            value={phone}/>
-                    </div>
-                    <div className="form-group">
-                        <input type="email" className="form-control" placeholder="Email" 
-                            onChange={event => setEmail(event.target.value)} 
-                            value={email}/>
-                    </div>
-                    <div className="form-group">
-                        <select className="form-control" placeholder="Province" 
-                            onChange={event => setProvince(event.target.value)} 
-                            value={province}>
+                        <select className="form-control" placeholder="To" 
+                            onChange={event => setTo(event.target.value)} 
+                            value={to}>
+                            <option>To...</option>
                             {
                                 provinces.map((item, index) => (
-                                    <option 
-                                        value={item} 
-                                        key={index}>
-                                        {item}
-                                    </option>
+                                    <option value={item} key={index}>{item}</option>
+                                ))
+                            }
+                        </select>
+                    </div>
+                    <div className="form-group">
+                        <input type="text" className="form-control" placeholder="Sender Phone" 
+                            onChange={event => setSenderPhone(event.target.value)} 
+                            value={senderPhone}/>
+                    </div>
+                    <div className="form-group">
+                        <input type="text" className="form-control" placeholder="Receiver Phone" 
+                            onChange={event => setReceiverPhone(event.target.value)} 
+                            value={receiverPhone}/>
+                    </div>
+                    <div className="form-group">
+                        <input type="text" className="form-control" placeholder="Item Price($)" 
+                            onChange={event => setItemPrice(event.target.value)} 
+                            value={itemPrice}/>
+                    </div>
+                    <div className="form-group">
+                        <input type="text" className="form-control" placeholder="Deliver Price($)" 
+                            onChange={event => setdeliverPrice(event.target.value)} 
+                            value={deliverPrice}/>
+                    </div>
+                    <div className="form-group">
+                        <select className="form-control" placeholder="To" 
+                            onChange={event => setItemStatus(event.target.value)} 
+                            value={itemStatus}>
+                            <option>Status...</option>
+                            {
+                                statuses.map((item, index) => (
+                                    <option value={item} key={index}>{item}</option>
                                 ))
                             }
                         </select>
