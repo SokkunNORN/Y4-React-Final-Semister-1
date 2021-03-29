@@ -1,6 +1,9 @@
 import { useState } from 'react'
 import Modal from 'react-bootstrap4-modal'
 import { writeUser } from '../../../api/user'
+import { getRole, selectRole } from '../../../api/role'
+
+var previousStatusDialog = false
 
 function FormCreate ({
     isOpen = true,
@@ -36,6 +39,7 @@ function FormCreate ({
         'Tbong Khmum'
     ]
 
+    const [userRoles, setUserRoles] = useState([])
     const [fullName, setFullName] = useState('')
     const [username, setUsername] = useState('')
     const [gender, setGender] = useState('Male')
@@ -43,6 +47,16 @@ function FormCreate ({
     const [phone, setPhone] = useState('')
     const [email, setEmail] = useState('')
     const [province, setProvince] = useState(provinces[0])
+    const [role, setRole] = useState({})
+
+    const fetchRole = async () => {
+        const roles = await getRole()
+        setRole(roles[0].id)
+        setUserRoles(roles)
+    }
+
+    isOpen && previousStatusDialog != isOpen && fetchRole()
+    previousStatusDialog = isOpen
 
     function onResetData () {
         onClose()
@@ -54,9 +68,11 @@ function FormCreate ({
         setPhone('')
         setEmail('')
         setProvince('')
+        setRole({})
     }
 
     async function onCreate () {
+        const userRole = await selectRole(role)
         const user = {
             'age': age,
             'email': email,
@@ -66,7 +82,12 @@ function FormCreate ({
             'province': province,
             'username': username,
             'createdAt': new Date(),
-            'updatedAt': new Date()
+            'updatedAt': new Date(),
+            'role': {
+                id: userRole.id,
+                role: userRole.role,
+                description: userRole.description
+            }
         }
 
         await writeUser(user)
@@ -121,6 +142,18 @@ function FormCreate ({
                             {
                                 provinces.map((item, index) => (
                                     <option value={item} key={index}>{item}</option>
+                                ))
+                            }
+                        </select>
+                    </div>
+
+                    <div className="form-group">
+                        <select className="form-control" placeholder="Role" 
+                            onChange={event => setRole(event.target.value)} 
+                            value={role}>
+                            {
+                                userRoles.map((item, index) => (
+                                    <option value={item.id} key={index}>{item.role}</option>
                                 ))
                             }
                         </select>
