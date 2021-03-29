@@ -47,7 +47,7 @@ function FormCreate ({
     const [phone, setPhone] = useState('')
     const [email, setEmail] = useState('')
     const [province, setProvince] = useState(provinces[0])
-    const [role, setRole] = useState({})
+    const [role, setRole] = useState('')
 
     const fetchRole = async () => {
         const roles = await getRole()

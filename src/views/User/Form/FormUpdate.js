@@ -2,6 +2,7 @@
 import React, { useState } from 'react'
 import Modal from 'react-bootstrap4-modal'
 import { selectUser, modifyUser } from '../../../api/user'
+import { getRole, selectRole } from "../../../api/role"
 
 var previousStatusDialog = false
 
@@ -39,6 +40,7 @@ function FormUpdate ({
         'Tbong Khmum'
     ]
 
+    const [userRoles, setUserRoles] = useState([])
     const [fullName, setFullName] = useState('')
     const [username, setUsername] = useState('')
     const [gender, setGender] = useState('')
@@ -46,6 +48,7 @@ function FormUpdate ({
     const [phone, setPhone] = useState('')
     const [email, setEmail] = useState('')
     const [province, setProvince] = useState('')
+    const [role, setRole] = useState('')
 
     const fetchUser = async id => {
         const user = await selectUser(id)
@@ -57,9 +60,18 @@ function FormUpdate ({
         setPhone(user.phone)
         setEmail(user.email)
         setProvince(user.province)
+        setRole(user.role.id)
     }
 
-    isOpen && previousStatusDialog != isOpen && fetchUser(id)
+    const fetchRole = async () => {
+        const roles = await getRole()
+        setUserRoles(roles)
+    }
+
+    if (isOpen && previousStatusDialog != isOpen) {
+        fetchRole()
+        fetchUser(id)
+    }
     
     previousStatusDialog = isOpen
 
@@ -73,9 +85,11 @@ function FormUpdate ({
         setPhone('')
         setEmail('')
         setProvince('')
+        setRole('')
     }
 
     async function onUpdate () {
+        const userRole = await selectRole(role)
         const user = {
             'age': age,
             'email': email,
@@ -84,7 +98,12 @@ function FormUpdate ({
             'phone': phone,
             'province': province,
             'username': username,
-            'updatedAt': new Date()
+            'updatedAt': new Date(),
+            'role': {
+                id: userRole.id,
+                role: userRole.role,
+                description: userRole.description
+            }
         }
 
         await modifyUser(id, user)
@@ -145,6 +164,18 @@ function FormUpdate ({
                                         key={index}>
                                         {item}
                                     </option>
+                                ))
+                            }
+                        </select>
+                    </div>
+
+                    <div className="form-group">
+                        <select className="form-control" placeholder="Role" 
+                            onChange={event => setRole(event.target.value)} 
+                            value={role}>
+                            {
+                                userRoles.map((item, index) => (
+                                    <option value={item.id} key={index}>{item.role}</option>
                                 ))
                             }
                         </select>
